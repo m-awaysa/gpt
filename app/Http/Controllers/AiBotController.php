@@ -45,7 +45,7 @@ class AiBotController extends Controller
             'name' => 'Drink Recommender',
             'description' => 'This assistant for recommending drinks based on specific criteria.he take the customer request and return the id of the closeset 2 recipe from the file uploaded.',
             'model' => 'gpt-4-1106-preview',
-            "instructions" => "You are a assistance. i want you to open the file and finde the closest match for the user request. this request is asking for recipe. return the ids for the closest match. dont answer any question outside the file. you can answer in arabic if the user ask in arabic",
+            "instructions" => "You are a assistance. i want you to open the file and finde the closest match for the user request. this request is asking for recipe. return the ids for the closest match. dont answer any question outside the file. you can answer in  arabic if the user ask in arabic and in english if he ask in english",
             'tools' => [['type' => 'code_interpreter']],
             'file_ids' => ['file-vNe6mgHPbEaSrye1b5QqdXOH'] // Replace with your actual file ID
         ]);
@@ -70,9 +70,9 @@ class AiBotController extends Controller
     {
 
 
-        $threadId = 'thread_ogOwwOdkIkPyz17NXvkVhmtS'; // Replace with your actual thread ID
+        $threadId = 'thread_gw4lIIYGOq5v8YeLIriB6ILd'; // Replace with your actual thread ID
         $apiKey = env('OPENAI_API_KEY'); // Ensure your API key is stored in the .env file
-        $assistantId = 'asst_gEudLY7eAUCiv0giTxPbqPtQ'; // Replace with your actual assistant ID
+        $assistantId = 'asst_ccPgYDWep9ArZINWs1chrGbq'; // Replace with your actual assistant ID
 
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $apiKey,
@@ -94,15 +94,17 @@ class AiBotController extends Controller
             'assistant_id' => $assistantId
         ]);
 
-        $runId =  $response->json()['id'];
-        $runId = 'run_XD11JCUGj7wYBCZC5ZRAHbdW';
+       
+        // $runId =  $response->json()['id'];
+        // $runId = 'run_XD11JCUGj7wYBCZC5ZRAHbdW';
 
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . $apiKey,
-            'OpenAI-Beta' => 'assistants=v1'
-        ])->get("https://api.openai.com/v1/threads/{$threadId}/runs/{$runId}");
+        // $response = Http::withHeaders([
+        //     'Authorization' => 'Bearer ' . $apiKey,
+        //     'OpenAI-Beta' => 'assistants=v1'
+        // ])->get("https://api.openai.com/v1/threads/{$threadId}/runs/{$runId}");
 
 
+      
         // while ($response->json()['status'] !=  'completed') {
 
 
@@ -121,7 +123,7 @@ class AiBotController extends Controller
         // ])->get("https://api.openai.com/v1/threads/{$threadId}/messages");
 
 
-        return $response->json()['status'];
+        return $response;
     }
 
 
@@ -132,9 +134,8 @@ class AiBotController extends Controller
     public function getMessages(Request $request)
     {
 
-        $threadId = 'thread_ogOwwOdkIkPyz17NXvkVhmtS'; // Replace with your actual thread ID
+        $threadId = 'thread_gw4lIIYGOq5v8YeLIriB6ILd'; // Replace with your actual thread ID
         $apiKey = env('OPENAI_API_KEY'); // Ensure your API key is stored in the .env file
-        $assistantId = 'asst_gEudLY7eAUCiv0giTxPbqPtQ'; // Replace with your actual assistant ID
 
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $apiKey,
@@ -142,8 +143,8 @@ class AiBotController extends Controller
             'OpenAI-Beta' => 'assistants=v1'
         ])->get("https://api.openai.com/v1/threads/{$threadId}/messages");
 
-        // dd($response->json());
-        return $response;
+    
+        return $response->json();
     }
 
 
