@@ -21,32 +21,38 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{{route('ask.gpt')}}">ASK GPT</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{{route('embidding')}}">Embidding</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{{ route('ask.image') }}">iamge genarater</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{{ route('ask.about.image') }}">Ask About Iamge</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{{ route('text.speech') }}">text->speech</a>
-            </li>
-            </ul>
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{ route('ask.gpt') }}">ASK GPT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{ route('embidding') }}">Embidding</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{ route('ask.image') }}">iamge genarater</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{ route('ask.about.image') }}">Ask About
+                            Iamge</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{ route('text.speech') }}">text->speech</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{ route('chat.bot') }}">Ai Bot</a>
+                    </li>
+                </ul>
 
-          </div>
+            </div>
         </div>
-      </nav>
+    </nav>
 
 
     <div class="d-flex flex-column m-auto align-content-center justify-content-center">
@@ -57,7 +63,8 @@
 
             <div class="d-flex row col-12 w-100" style="height:auto; min-height:500px">
 
-                <textarea class="col-6" type="text" name="question" style="min-height: 100%; width:50%" placeholder="Ask a normal question">{{ old('question') }}</textarea>
+                <textarea class="col-6" type="text" name="question" style="min-height: 100%; width:50%"
+                    placeholder="Ask a normal question">{{ old('question') }}</textarea>
                 <p class="col-6 bg-success" style="min-height: 100%">
 
                     {{ $answer ?? '' }}
@@ -83,7 +90,7 @@
                 <textarea class="col-6" name="question_for_context" placeholder="Ask a question about the context..."
                     style="min-height: 100%; width:50%">{{ old('question_for_context') }}</textarea>
             </div>
-            <div class="col-12" >
+            <div class="col-12">
                 <p class="bg-success" style="min-height: 300px">
 
                     {{ $answer_on_context ?? '' }}

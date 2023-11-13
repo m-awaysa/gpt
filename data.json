@@ -1,0 +1,146 @@
+[
+    {
+        "id": "drink1",
+        "temperature": "hot",
+        "type": "tea",
+        "sugar": "yes",
+        "additives": [
+            "mint"
+        ],
+        "size": [
+            "large"
+        ]
+    },
+    {
+        "id": "drink2",
+        "temperature": "hot",
+        "type": "tea",
+        "sugar": "no",
+        "additives": [
+            "milk"
+        ],
+        "size": [
+            "large",
+            "small"
+        ]
+    },
+    {
+        "id": "drink3",
+        "temperature": "iced",
+        "type": "tea",
+        "sugar": "yes",
+        "additives": [
+            "milk"
+        ],
+        "size": [
+            "large",
+            "small"
+        ]
+    },
+    {
+        "id": "drink4",
+        "temperature": "iced",
+        "type": "tea",
+        "sugar": "no",
+        "additives": [
+            "milk","coffe"
+        ],
+        "size": [
+            "large",
+            "small"
+        ]
+    },
+    {
+        "id": "drink5",
+        "temperature": "hot",
+        "type": "coffe",
+        "sugar": "no",
+        "additives": [
+            "milk"
+        ],
+        "size": [
+            "large",
+            "small"
+        ]
+    },
+    {
+        "id": "drink6",
+        "temperature": "hot",
+        "type": "coffe",
+        "sugar": "yes",
+        "additives": [
+            "milk"
+        ],
+        "size": [
+            "large",
+            "small"
+        ]
+    },
+    {
+        "id": "drink7",
+        "temperature": "iced",
+        "type": "coffe",
+        "sugar": "yes",
+        "additives": [
+
+        ],
+        "size": [
+            "large",
+            "small"
+        ]
+    },
+    {
+        "id": "drink8",
+        "temperature": "cold",
+        "type": "juice",
+        "sugar": "yes",
+        "additives": [
+            "apple","orange"
+        ],
+        "size": [
+            "large",
+            "small",
+            "extra large"
+        ]
+    },
+    {
+        "id": "drink9",
+        "temperature": "cold",
+        "type": "juice",
+        "sugar": "no",
+        "additives": [
+            "apple"
+        ],
+        "size": [
+            "large",
+            "small",
+            "extra small"
+        ]
+    },
+    {
+        "id": "drink10",
+        "temperature": "hot",
+        "type": "juice",
+        "sugar": "yes",
+        "additives": [
+            "orange"
+        ],
+        "size": [
+            "large",
+            "small"
+        ]
+    },
+    {
+        "id": "drink11",
+        "temperature": "hot",
+        "type": "juice",
+        "sugar": "no",
+        "additives": [
+            "orange","extra sugare"
+        ],
+        "size": [
+            "large",
+            "small"
+        ]
+    }
+]

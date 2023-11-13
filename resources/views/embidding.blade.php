@@ -45,6 +45,9 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{ route('text.speech') }}">text->speech</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{ route('chat.bot') }}">Ai Bot</a>
+                    </li>
                 </ul>
 
             </div>
