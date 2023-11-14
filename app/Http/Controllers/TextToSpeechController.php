@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
+use GuzzleHttp\Client;
 
 
 class TextToSpeechController extends Controller
@@ -34,5 +35,44 @@ class TextToSpeechController extends Controller
 
         // Handle errors here
         return back()->withErrors('Unable to convert text to speech.');
+    }
+
+    public function convertToText(Request $request)
+    {
+        $request->validate([
+            'audio_file' => 'required|file|mimes:mp3,wav'
+        ]);
+
+        $file = $request->file('audio_file');
+
+        $filePath = $file->getPathname();
+        $fileName = $file->getClientOriginalName();
+
+        $client = new Client();
+        $response = $client->post('https://api.openai.com/v1/audio/transcriptions', [
+            'headers' => [
+                'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
+            ],
+            'multipart' => [
+                [
+                    'name'     => 'file',
+                    'contents' => fopen($filePath, 'r'),
+                    'filename' => $fileName
+                ],
+                [
+                    'name'     => 'model',
+                    'contents' => 'whisper-1'
+                ]
+            ]
+        ]);
+
+        $body = $response->getBody();
+        $transcription = json_decode($body);
+
+    
+        // Return the transcription or handle as needed
+
+        // Return the transcription or handle as needed
+        return view('speech-text', ['transcription' => $transcription->text]);
     }
 }

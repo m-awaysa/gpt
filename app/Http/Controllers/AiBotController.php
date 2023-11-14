@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Http;
 class AiBotController extends Controller
 {
 
-    private $assistance_id;
     public function uploadFile()
     {
         $response = Http::withHeaders([
@@ -23,8 +22,6 @@ class AiBotController extends Controller
 
         dd($response->json());
     }
-
-
     // array:8 [▼ // app\Http\Controllers\AiBotController.php:20
     //   "object" => "file"
     //   "id" => "file-vNe6mgHPbEaSrye1b5QqdXOH"
@@ -45,11 +42,10 @@ class AiBotController extends Controller
             'name' => 'Drink Recommender',
             'description' => 'This assistant for recommending drinks based on specific criteria.he take the customer request and return the id of the closeset 2 recipe from the file uploaded.',
             'model' => 'gpt-4-1106-preview',
-            "instructions" => "You are a assistance. i want you to open the file and finde the closest match for the user request. this request is asking for recipe. return the ids for the closest match. dont answer any question outside the file. you can answer in arabic if the user ask in arabic",
+            "instructions" => "You are a assistance. i want you to open the json file and finde the closest match for the user request. this request is asking for recipe. return the id for the closest match(you cant return 2 recipe or more if needed). dont answer any question outside the file. you can answer in arabic if the user ask in arabic",
             'tools' => [['type' => 'code_interpreter']],
             'file_ids' => ['file-vNe6mgHPbEaSrye1b5QqdXOH'] // Replace with your actual file ID
         ]);
-        $this->assistance_id =  $response->json()['id'];
 
         return $response->json();
     }
@@ -111,7 +107,7 @@ class AiBotController extends Controller
         //         'OpenAI-Beta' => 'assistants=v1'
         //     ])->get("https://api.openai.com/v1/threads/{$threadId}/runs/{$runId}");
         // }
-     
+
 
 
         // $response = Http::withHeaders([
@@ -121,7 +117,7 @@ class AiBotController extends Controller
         // ])->get("https://api.openai.com/v1/threads/{$threadId}/messages");
 
 
-        return $response->json()['status'];
+        return $response->json();
     }
 
 
@@ -151,70 +147,71 @@ class AiBotController extends Controller
 
 
 
-    public function queryThread(Request $request)
-    {
+    // public function queryThread(Request $request)
+    // {
 
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
-            'Content-Type' => 'application/json',
-            'OpenAI-Beta' => 'assistants=v1'
-        ])->post('https://api.openai.com/v1/threads', [
-            'messages' => [
-                [
-                    'role' => 'user',
-                    'content' => $request->question . ' note :' . 'Please recommend a drink based solely on the contents of the uploaded file. If an exact match for the request is not found in the file, suggest the closest available option. return just the id', // Replace with your query, // Replace with your query
-                    'file_ids' => ['file-vNe6mgHPbEaSrye1b5QqdXOH'] // Replace with your actual file ID
-                ]
-            ]
-        ]);
-
-
-        return $this->getThreadMessages($response->json()['id'], $request->question);
-    }
+    //     $response = Http::withHeaders([
+    //         'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
+    //         'Content-Type' => 'application/json',
+    //         'OpenAI-Beta' => 'assistants=v1'
+    //     ])->post('https://api.openai.com/v1/threads', [
+    //         'messages' => [
+    //             [
+    //                 'role' => 'user',
+    //                 'content' => $request->question . ' note :' . 'Please recommend a drink based solely on the contents of the uploaded file. If an exact match for the request is not found in the file, suggest the closest available option. return just the id', // Replace with your query, // Replace with your query
+    //                 'file_ids' => ['file-vNe6mgHPbEaSrye1b5QqdXOH'] // Replace with your actual file ID
+    //             ]
+    //         ]
+    //     ]);
 
 
-
-
-    public function getThreadMessages($thread_id = 'thread_fwrmOs4PY6TjUqFVFyBoLBGU', $question)
-    {
-        $thread_id = 'thread_fwrmOs4PY6TjUqFVFyBoLBGU';
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
-            'Content-Type' => 'application/json',
-            'OpenAI-Beta' => 'assistants=v1'
-        ])->post("https://api.openai.com/v1/threads/{$thread_id}/runs", [
-            'assistant_id' => 'asst_StoGSNXt8M0V4yKzFutA0jLU',
-        ]);
-
-        return $this->getThreadResponse($thread_id, $question);
-    }
+    //     return $this->getThreadMessages($response->json()['id'], $request->question);
+    // }
 
 
 
-    public function getThreadResponse($thread_id, $question)
-    {
-        $thread_id = 'thread_fwrmOs4PY6TjUqFVFyBoLBGU';
 
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
-            'OpenAI-Beta' => 'assistants=v1'
-        ])->get("https://api.openai.com/v1/threads/{$thread_id}/messages", [
-            'messages' => [
+    // public function getThreadMessages($thread_id = 'thread_fwrmOs4PY6TjUqFVFyBoLBGU', $question)
+    // {
+    //     $thread_id = 'thread_fwrmOs4PY6TjUqFVFyBoLBGU';
+    //     $response = Http::withHeaders([
+    //         'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
+    //         'Content-Type' => 'application/json',
+    //         'OpenAI-Beta' => 'assistants=v1'
+    //     ])->post("https://api.openai.com/v1/threads/{$thread_id}/runs", [
+    //         'assistant_id' => 'asst_StoGSNXt8M0V4yKzFutA0jLU',
+    //     ]);
 
-                [
-                    'role' => 'system',
-                    'content' => 'Please recommend a drink based solely on the contents of the uploaded file. If an exact match for the request is not found in the file, suggest the closest available option. return just the id'
-                ],
-                [
-                    'role' => 'user',
-                    'content' =>  $question . ' note :' . 'Please recommend a drink based solely on the contents of the uploaded file. If an exact match for the request is not found in the file, suggest the closest available option. return just the id', // Replace with your query
-                    'file_ids' => ['file-vNe6mgHPbEaSrye1b5QqdXOH']
-                ]
-            ]
-        ]);
+    //     return $this->getThreadResponse($thread_id, $question);
+    // }
 
-        return view('chat-bot', [
-            'response' =>  $response->json()['data']
-        ]);
-    }
+
+
+    // public function getThreadResponse($thread_id, $question)
+    // {
+    //     $thread_id = 'thread_fwrmOs4PY6TjUqFVFyBoLBGU';
+
+    //     $response = Http::withHeaders([
+    //         'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
+    //         'OpenAI-Beta' => 'assistants=v1'
+    //     ])->get("https://api.openai.com/v1/threads/{$thread_id}/messages", [
+    //         'messages' => [
+
+    //             [
+    //                 'role' => 'system',
+    //                 'content' => 'Please recommend a drink based solely on the contents of the uploaded file. If an exact match for the request is not found in the file, suggest the closest available option. return just the id'
+    //             ],
+    //             [
+    //                 'role' => 'user',
+    //                 'content' =>  $question . ' note :' . 'Please recommend a drink based solely on the contents of the uploaded file. If an exact match for the request is not found in the file, suggest the closest available option. return just the id', // Replace with your query
+    //                 'file_ids' => ['file-vNe6mgHPbEaSrye1b5QqdXOH']
+    //             ]
+    //         ]
+    //     ]);
+
+    //     return view('chat-bot', [
+    //         'response' =>  $response->json()['data']
+    //     ]);
+    // }
+
 }

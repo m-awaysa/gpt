@@ -87,148 +87,58 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const drinks = [{
-                    "id": "drink1",
-                    "temperature": "hot",
-                    "type": "tea",
-                    "sugar": "yes",
-                    "additives": [
-                        "mint"
-                    ],
-                    "size": [
-                        "large"
-                    ]
+                    "id": 1,
+                    "name": "cooler master mm711",
+                    "slug": "cooler-master-mm711",
+                    "image": "mouse3-cooler-master-mm711"
                 },
                 {
-                    "id": "drink2",
-                    "temperature": "hot",
-                    "type": "tea",
-                    "sugar": "no",
-                    "additives": [
-                        "milk"
-                    ],
-                    "size": [
-                        "large",
-                        "small"
-                    ]
+                    "id": 2,
+                    "name": "LAPTOP ASUS TUF 15.6 i7-12650H SSD1TB RAM16",
+                    "slug": "LAPTOP-ASUS-TUF-15-6-i7-12650H-SSD1TB-RAM16",
+                    "image": "laptop1-i7-3070"
                 },
                 {
-                    "id": "drink3",
-                    "temperature": "iced",
-                    "type": "tea",
-                    "sugar": "yes",
-                    "additives": [
-                        "milk"
-                    ],
-                    "size": [
-                        "large",
-                        "small"
-                    ]
+                    "id": 3,
+                    "name": "LAPTOP LENOVO IP FLEX 5 14T i5-1235U SSD512 RAM8",
+                    "slug": "LAPTOP-LENOVO-IP-FLEX-5-14Ti5-1235USSD512RAM8",
+                    "image": "laptop2-lenovo"
                 },
                 {
-                    "id": "drink4",
-                    "temperature": "iced",
-                    "type": "tea",
-                    "sugar": "no",
-                    "additives": [
-                        "milk", "coffe"
-                    ],
-                    "size": [
-                        "large",
-                        "small"
-                    ]
+                    "id": 4,
+                    "name": "GPU ASUS TUF GTX1650S-O4G-GAMING",
+                    "slug": "GPU-ASUS-TUF-GTX1650S-O4G-GAMING",
+                    "image": "GPU-AS-1650S-O4-300"
                 },
                 {
-                    "id": "drink5",
-                    "temperature": "hot",
-                    "type": "coffe",
-                    "sugar": "no",
-                    "additives": [
-                        "milk"
-                    ],
-                    "size": [
-                        "large",
-                        "small"
-                    ]
+                    "id": 5,
+                    "name": "GPU GIGABYTE RTX4070-GAMING-OC-12GD REV1.0",
+                    "slug": "GPU-GIGABYTE-RTX4070-GAMING-OC-12GD",
+                    "image": "GPU-GB-4070-OC-5"
                 },
                 {
-                    "id": "drink6",
-                    "temperature": "hot",
-                    "type": "coffe",
-                    "sugar": "yes",
-                    "additives": [
-                        "milk"
-                    ],
-                    "size": [
-                        "large",
-                        "small"
-                    ]
+                    "id": 6,
+                    "name": "KEYBOARD T-DAGGER BATTLESHIP T-TGK301",
+                    "slug": "KEYBOARD-T-DAGGER-BATTLESHIP-T-TGK301",
+                    "image": "KB-T-TGK301-MCA-30"
                 },
                 {
-                    "id": "drink7",
-                    "temperature": "iced",
-                    "type": "coffe",
-                    "sugar": "yes",
-                    "additives": [
-
-                    ],
-                    "size": [
-                        "large",
-                        "small"
-                    ]
+                    "id": 7,
+                    "name": "KEYBOARD COOLERMASTER MK750 RGB MECHANICAL",
+                    "slug": "KEYBOARD-COOLERMASTER-MK750-RGB-MECHANICAL",
+                    "image": "KB-MK750-M-RED-5"
                 },
                 {
-                    "id": "drink8",
-                    "temperature": "cold",
-                    "type": "juice",
-                    "sugar": "yes",
-                    "additives": [
-                        "apple", "orange"
-                    ],
-                    "size": [
-                        "large",
-                        "small",
-                        "extra large"
-                    ]
+                    "id": 8,
+                    "name": "MOUSE LENOVO M500 GAMING RGB",
+                    "slug": "MOUSE-LENOVO-M500-GAMING-RGB",
+                    "image": "MS-M500-RGB-300"
                 },
                 {
-                    "id": "drink9",
-                    "temperature": "cold",
-                    "type": "juice",
-                    "sugar": "no",
-                    "additives": [
-                        "apple"
-                    ],
-                    "size": [
-                        "large",
-                        "small",
-                        "extra small"
-                    ]
-                },
-                {
-                    "id": "drink10",
-                    "temperature": "hot",
-                    "type": "juice",
-                    "sugar": "yes",
-                    "additives": [
-                        "orange"
-                    ],
-                    "size": [
-                        "large",
-                        "small"
-                    ]
-                },
-                {
-                    "id": "drink11",
-                    "temperature": "hot",
-                    "type": "juice",
-                    "sugar": "no",
-                    "additives": [
-                        "orange", "extra sugare"
-                    ],
-                    "size": [
-                        "large",
-                        "small"
-                    ]
+                    "id": 9,
+                    "name": "MICROPHONE SILVERLINE MM-202 MULTIMEDIA",
+                    "slug": "MICROPHONE-SILVERLINE-MM-202-MULTIMEDIA",
+                    "image": "MIC-SL-MM-202-30"
                 }
             ];
 
@@ -240,13 +150,14 @@
 
                 const cardBody = document.createElement('div');
                 cardBody.className = 'card h-100';
+                let urlTemplate = "{{ route('product', ':id') }}";
+                let url = urlTemplate.replace(':id', drink.id);
+
                 cardBody.innerHTML = `
-            <div class="card-body">
-                <h5 class="card-title">${drink.id.toUpperCase()}</h5>
-                <h6 class="card-title">${drink.type.toUpperCase()} - ${drink.temperature.toUpperCase()}</h6>
-                <p class="card-text">Sugar: ${drink.sugar}</p>
-                <p class="card-text">Additives: ${drink.additives.join(', ') || 'None'}</p>
-                <p class="card-text">Sizes: ${drink.size.join(', ')}</p>
+            <div class="card-body" style="max-height:400px;">
+                <a href="${url}">
+                <img src="{{ asset('img/${drink.image}.png') }}" class="card-img" />
+                <h6 class="card-title">${drink.name}.</h6>
             </div>
         `;
 
@@ -257,7 +168,7 @@
     </script>
     <script>
         function fetchData() {
-            fetch("{{ route('get.message') }}", {
+            fetch("{{ route('product.get.message') }}", {
                     method: 'GET',
                     headers: {
                         'X-Requested-With': 'XMLHttpRequest', // Required for Laravel to recognize the request as AJAX
@@ -274,8 +185,6 @@
                     container.innerHTML = ''; // Clear previous results
 
                     data.data.forEach(res => {
-
-                        // Assuming each item in the array has a content array with at least one text object
                         let messageContent = res.content[0].text.value;
                         let messageDiv = document.createElement('div');
                         if (res.role == 'user') {
@@ -284,10 +193,9 @@
                             messageDiv.className = 'bg-secondary border my-2';
                         }
 
-                        let messagePara = document.createElement('p');
-                        messagePara.textContent = `message: ${messageContent}`;
+                        // Use innerHTML to render the HTML content
+                        messageDiv.innerHTML = `message: ${messageContent}`;
 
-                        messageDiv.appendChild(messagePara);
                         container.appendChild(messageDiv);
                     });
                 })
@@ -302,7 +210,7 @@
             document.getElementById('submitButton').disabled = true;
 
             const data = new FormData(this); // Create a FormData object from the form
-            fetch("{{ route('create.message') }}", {
+            fetch("{{ route('product.create.message') }}", {
                     method: 'POST',
                     headers: {
                         'X-Requested-With': 'XMLHttpRequest', // Required for Laravel to recognize the request as AJAX
@@ -317,11 +225,11 @@
                     console.log('Success:');
                     console.log(data);
                     fetchData
-                    intervalId= setInterval(fetchData, 2000);
+                    intervalId = setInterval(fetchData, 4000);
                     setTimeout(() => {
                         clearInterval(intervalId);
                         console.log("Stopped fetching data after 10 seconds.");
-                    }, 10000);
+                    }, 30000);
                     // Handle success
                 })
                 .catch((error) => {

@@ -42,7 +42,6 @@
                         <a class="nav-link" aria-current="page" href="{{ route('ask.about.image') }}">Ask About
                             Iamge</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{ route('text.speech') }}">text->speech</a>
                     </li>
@@ -62,25 +61,30 @@
     </nav>
 
 
+    <div class="d-flex flex-column m-auto align-content-center justify-content-center"
+        style="height: 100vh;width: 100%">
+        <div>
 
-    <form action="{{ route('text-to-speech') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <label for="input_text">Enter text to convert to speech:</label>
-        <textarea name="input_text" id="input_text" required></textarea>
+            <form action="{{ route('speech-to-text') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="file" name="audio_file" required>
+                @error('audio_file')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+                <button type="submit">Transcribe</button>
+            </form>
 
-        <label for="voice">Choose a voice:</label>
-        <select name="voice" id="voice">
-            <option value="alloy">Alloy</option>
-            <option value="shimmer">Shimmer</option>
-            <option value="nova">Nova</option>
-            <option value="onyx">Onyx</option>
-            <option value="fable">Fable</option>
-            <option value="echo">Echo</option>
-            // Add other voice options here
-        </select>
-
-        <button type="submit">Convert to Speech</button>
-    </form>
+            <br>
+            -------------------------------------------------------------------------
+            <br>
+            <h1>Transcription Result</h1>
+            @if (isset($transcription))
+                <p>{{ $transcription }}</p>
+            @else
+                <p>No transcription available.</p>
+            @endif
+        </div>
+    </div>
 </body>
 
 </html>

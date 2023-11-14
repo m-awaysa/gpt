@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Laravel</title>
 
@@ -42,7 +43,6 @@
                         <a class="nav-link" aria-current="page" href="{{ route('ask.about.image') }}">Ask About
                             Iamge</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{ route('text.speech') }}">text->speech</a>
                     </li>
@@ -60,27 +60,15 @@
             </div>
         </div>
     </nav>
-
-
-
-    <form action="{{ route('text-to-speech') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <label for="input_text">Enter text to convert to speech:</label>
-        <textarea name="input_text" id="input_text" required></textarea>
-
-        <label for="voice">Choose a voice:</label>
-        <select name="voice" id="voice">
-            <option value="alloy">Alloy</option>
-            <option value="shimmer">Shimmer</option>
-            <option value="nova">Nova</option>
-            <option value="onyx">Onyx</option>
-            <option value="fable">Fable</option>
-            <option value="echo">Echo</option>
-            // Add other voice options here
-        </select>
-
-        <button type="submit">Convert to Speech</button>
-    </form>
+    <div class="container mt-4 d-flec justify-content-center align-content-center align-middle"
+        style="height: 100vh; width:100%">
+        <div class="card" style="width: 18rem;">
+            <img src="{{asset('img/'.$product->image)}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <p class="card-text">{{ $product->name }}</p>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

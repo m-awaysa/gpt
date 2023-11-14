@@ -46,7 +46,13 @@
                         <a class="nav-link" aria-current="page" href="{{ route('text.speech') }}">text->speech</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{ route('speech.text') }}">speech->text</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{ route('chat.bot') }}">Ai Bot</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{ route('product.bot') }}">Product Ai Bot</a>
                     </li>
                 </ul>
 
@@ -58,15 +64,10 @@
     <div class="d-flex flex-column m-auto align-content-center justify-content-center">
         <form action="{{ route('gpt') }}" method="POST" class="m-auto w-100">
             @csrf
-
-
-
             <div class="d-flex row col-12 w-100" style="height:auto; min-height:500px">
-
                 <textarea class="col-6" type="text" name="question" style="min-height: 100%; width:50%"
                     placeholder="Ask a normal question">{{ old('question') }}</textarea>
                 <p class="col-6 bg-success" style="min-height: 100%">
-
                     {{ $answer ?? '' }}
                 </p>
             </div>
