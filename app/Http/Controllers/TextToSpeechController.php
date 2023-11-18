@@ -40,7 +40,7 @@ class TextToSpeechController extends Controller
     public function convertToText(Request $request)
     {
         $request->validate([
-            'audio_file' => 'required|file|mimes:mp3,wav'
+            'audio_file' => 'required|file|mimes:mp3,wav,ogg'
         ]);
 
         $file = $request->file('audio_file');
