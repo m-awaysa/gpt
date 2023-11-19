@@ -6,7 +6,9 @@ namespace Database\Seeders;
 
 use App\Models\Product;
 use App\Models\Recipe;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -80,5 +82,11 @@ class DatabaseSeeder extends Seeder
                 'image' =>  $product['image'],
             ]);
         }
+
+        User::Create([
+            'name' => 'ed',
+            'email' => 'd@d.d',
+            'password' =>  Hash::make('password'),
+        ]);
     }
 }

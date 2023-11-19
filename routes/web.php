@@ -6,6 +6,7 @@ use App\Http\Controllers\GPTController;
 use App\Http\Controllers\GPTEmbiddingController;
 use App\Http\Controllers\ImageGenerationController;
 use App\Http\Controllers\ImageQueryController;
+use App\Http\Controllers\loginController;
 use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\TextToSpeechController;
 use Illuminate\Support\Facades\Route;
@@ -96,3 +97,5 @@ Route::get('/QrCode', [QrCodeController::class, 'index'])->name('qrcode');
 Route::get('/chat-with-assistant', [QrCodeController::class, 'chatWithAssistant'])->name('chat-with-assistant');
 
 
+// Route::get('/login', [loginController::class, 'login'])->name('login');
+// Route::get('/stream', [loginController::class, 'stream'])->name('stream');
