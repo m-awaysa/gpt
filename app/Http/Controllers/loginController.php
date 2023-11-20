@@ -17,6 +17,17 @@ class loginController extends Controller
         return back();
     }
 
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/'); // or wherever you want to redirect after logout
+    }
+
     // public function stream(Request $request)
     // {
     //     event(new MessageSent($request->qr));

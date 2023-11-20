@@ -68,10 +68,15 @@
 
     @yield('content')
 
+
     <script type="module">
-        Echo.channel(`messanger`)
+        console.log( Echo.private('messenger'))
+        Echo.private('messenger')
             .listen('MessageSent', (e) => {
+                console.log(12);
                 console.log(e);
+            }).error((error) => {
+                console.error('Could not subscribe to the channel:', error);
             });
     </script>
 </body>

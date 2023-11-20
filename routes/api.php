@@ -19,4 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Broadcast::routes(['prefix' => 'api', 'middleware' => ['auth:api']]);
+Broadcast::routes(['prefix' => 'api', 'middleware' => ['auth:api']]);

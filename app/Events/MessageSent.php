@@ -21,8 +21,9 @@ class MessageSent implements ShouldBroadcastNow
      */
     public function __construct($message)
     {
-        $this->message =$message;
+        $this->message = $message;
     }
+
 
     /**
      * Get the channels the event should broadcast on.
@@ -31,8 +32,9 @@ class MessageSent implements ShouldBroadcastNow
      */
     public function broadcastOn(): array
     {
+
         return [
-            new Channel('messanger'),
+            new PrivateChannel('messenger'),
         ];
     }
 }
