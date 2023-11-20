@@ -94,12 +94,11 @@ Route::get('/products/{product}', [AiBotProductController::class, 'viewProduct']
 
 
 //qr code
-Route::middleware(['auth'])->group(function () {
-    Route::get('/QrCode', [QrCodeController::class, 'index'])->name('qrcode');
-    Route::get('/chat-with-assistant', [QrCodeController::class, 'chatWithAssistant'])->name('chat-with-assistant');
-});
+Route::post('/send/message/{uniqueId}', [QrCodeController::class, 'sendMessage'])->name('message');
+Route::get('/QrCode', [QrCodeController::class, 'index'])->name('qrcode');
+Route::get('/chat-with-assistant/{qrcode}', [QrCodeController::class, 'chatWithAssistant'])->name('chat-with-assistant');
 
+//login
 Route::get('/login', [loginController::class, 'login'])->name('login');
 Route::get('/logout', [loginController::class, 'logout'])->name('logout');
 // Route::get('/stream', [loginController::class, 'stream'])->name('stream');
-
