@@ -29,9 +29,17 @@ return [
             'secret' => env('PUSHER_APP_SECRET'),
             'path' => env('PUSHER_APP_PATH'),
             'capacity' => null,
-            'enable_client_messages' => false,
+            'enable_client_messages' => true,
             'enable_statistics' => true,
+            'encrypted' => true,
+
         ],
+    ],
+    'ssl' => [
+        'local_cert' => '/etc/letsencrypt/live/server1.mydomain.com/fullchain.pem',
+        'local_pk' => '/etc/letsencrypt/live/server1.mydomain.com/privkey.pem',
+        'passphrase' => null,
+        'verify_peer' => false,
     ],
 
     /*
