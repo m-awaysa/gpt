@@ -16,6 +16,7 @@ return new class extends Migration
             $table->longText('code');
             $table->date('start_date');
             $table->integer('period');
+            $table->longText('thread_id');
             $table->timestamps();
         });
     }

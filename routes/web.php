@@ -11,6 +11,13 @@ use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\TextToSpeechController;
 use Illuminate\Support\Facades\Route;
 
+
+use App\Models\QrCode;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use SimpleSoftwareIO\QrCode\Facades\QrCode as FacadesQrCode;
+use Illuminate\Support\Facades\Http;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -94,10 +101,27 @@ Route::get('/products/{product}', [AiBotProductController::class, 'viewProduct']
 
 
 //qr code
-Route::post('/send/message/{uniqueId}', [QrCodeController::class, 'sendMessage'])->name('message');
+Route::post('/send/message/{uniqueId}', [QrCodeController::class, 'sendMessageToMainScreen'])->name('message');
 Route::get('/QrCode', [QrCodeController::class, 'index'])->name('qrcode');
 Route::get('/chat-with-assistant/{qrcode}', [QrCodeController::class, 'chatWithAssistant'])->name('chat-with-assistant');
+Route::post('/stream/create/message', [QrCodeController::class, 'createMessage'])->name('stream.create.message');
+Route::get('/stream/messages', [QrCodeController::class, 'getMessages'])->name('stream.get.message');
 
+// Route::get('/run-id', function () {
+
+
+//     $threadId  = QrCode::where('code',  'bhWHs6XVSd')?->first()?->thread_id;
+
+//     $apiKey = env('OPENAI_API_KEY'); // Ensure your API key is stored in the .env file
+// ;
+
+//     $response = Http::withHeaders([
+//         'Authorization' => 'Bearer ' . $apiKey,
+//         'OpenAI-Beta' => 'assistants=v1'
+//     ])->get("https://api.openai.com/v1/threads/{$threadId}/runs/run_YWuTlsDqRmT0nFe94U0UwiN4");
+
+//     return  $response->json();
+// });
 //login
 Route::get('/login', [loginController::class, 'login'])->name('login');
 Route::get('/logout', [loginController::class, 'logout'])->name('logout');

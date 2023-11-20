@@ -9,5 +9,5 @@ class QrCode extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['period', 'start_date', 'code'];
+    protected $fillable = ['period', 'start_date', 'code','thread_id'];
 }

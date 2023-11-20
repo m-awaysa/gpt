@@ -42,7 +42,7 @@ class AiBotController extends Controller
             'name' => 'Drink Recommender',
             'description' => 'This assistant for recommending drinks based on specific criteria.he take the customer request and return the id of the closeset 2 recipe from the file uploaded.',
             'model' => 'gpt-4-1106-preview',
-            "instructions" => "You are a assistance. i want you to open the json file and finde the closest match for the user request. this request is asking for recipe. return the id for the closest match(you cant return 2 recipe or more if needed). dont answer any question outside the file. you can answer in arabic if the user ask in arabic",
+            "instructions" => "You are a assistance. i provided a json file, each object is a drink,each object has a keyword about the drink like additives,temperature or type or so on. you will take the custoemr word/keyword and from that you will try to find the closest drink they is asking for or they feels like to drink. you will recommand a drink not searching for exact word. return the id for the closest match(you cant return 2 recipe or more if needed). and put in mind you are dealing with customer so try to recommand them the closest drink they are trying to find. dont answer any question outside the file. dont use words like json, files, or any word refers to programming. talk like you are talking to normal human. you can answer in arabic if the user ask in arabic",
             'tools' => [['type' => 'code_interpreter']],
             'file_ids' => ['file-vNe6mgHPbEaSrye1b5QqdXOH'] // Replace with your actual file ID
         ]);
@@ -68,7 +68,7 @@ class AiBotController extends Controller
 
         $threadId = 'thread_gw4lIIYGOq5v8YeLIriB6ILd'; // Replace with your actual thread ID
         $apiKey = env('OPENAI_API_KEY'); // Ensure your API key is stored in the .env file
-        $assistantId = 'asst_ccPgYDWep9ArZINWs1chrGbq'; // Replace with your actual assistant ID
+        $assistantId = 'asst_Ow3NSIPDhFnhVBqg1OBYPKyU'; // Replace with your actual assistant ID
 
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $apiKey,
