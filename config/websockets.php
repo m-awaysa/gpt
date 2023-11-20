@@ -36,8 +36,8 @@ return [
         ],
     ],
     'ssl' => [
-        'local_cert' => '/etc/letsencrypt/live/server1.mydomain.com/fullchain.pem',
-        'local_pk' => '/etc/letsencrypt/live/server1.mydomain.com/privkey.pem',
+        'local_cert' => '/etc/letsencrypt/live/social.progmix.dev/fullchain.pem',
+        'local_pk' => '/etc/letsencrypt/live/social.progmix.dev/privkey.pem',
         'passphrase' => null,
         'verify_peer' => false,
     ],
