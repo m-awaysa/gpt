@@ -57,7 +57,7 @@ class QrCodeController extends Controller
             'OpenAI-Beta' => 'assistants=v1'
         ])->post('https://api.openai.com/v1/threads');
 
-        if (isset($responseArray['id'])) {
+        if (isset($response['id'])) {
             $qrModel->thread_id = $response->json()['id'];
             $qrModel->save();
         }
