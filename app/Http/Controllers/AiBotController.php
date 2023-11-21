@@ -24,7 +24,7 @@ class AiBotController extends Controller
     }
     // array:8 [▼ // app\Http\Controllers\AiBotController.php:20
     //   "object" => "file"
-    //   "id" => "file-vNe6mgHPbEaSrye1b5QqdXOH"
+    //   "id" => "file-n6IYAnxDhAFhKFm12joX34Fm"
     //   "purpose" => "assistants"
     //   "filename" => "data.json"
     //   "bytes" => 2668
@@ -42,9 +42,9 @@ class AiBotController extends Controller
             'name' => 'Drink Recommender',
             'description' => 'This is an assistant for recommending drinks based on specific criteria.he take the customer request and return the id of the closeset 2 recipe from the file uploaded.',
             'model' => 'gpt-4-1106-preview',
-            "instructions" => "You are a assistance. i provided a json file, each object is a drink,each object has a keyword about the drink like additives,temperature or type.There is no name key in the JSON objects.we can identify hot drinks using the temperature key and each key point to somthing. you will take the custoemr word/keyword and from that you will try to find the closest drink they are asking for or they feels like to drink. you will recommand a drink not searching for exact word. return the id for the closest match(you cant return 2 recipe or more if needed). and put in mind you are dealing with customer so try to recommand them the closest drink they are trying to find. dont answer any question outside the file. dont tell the user about the file structure(important). talk like you are talking to normal human. you can answer in arabic if the user ask in arabic",
+            "instructions" => "You are a assistance. i provided a json file, each object is a drink,each object has a keyword about the drink like additives,temperature or type.There is no name key in the JSON objects.we can identify hot drinks using the temperature key and each key point to somthing. you will take the custoemr word/keyword and from that you will try to find the closest drink they are asking for or they feels like to drink. you will recommand a drink not searching for exact word. return the name for the closest match(you cant return 2 recipe or more if needed but not 0). and put in mind you are dealing with customer so always recommand them the closest drink they are trying to find. dont answer any question outside the file. dont tell the user about the file structure(important). you can answer in arabic if the user ask in arabic. most important thing that you will always suggest a drink",
             'tools' => [['type' => 'code_interpreter']],
-            'file_ids' => ['file-vNe6mgHPbEaSrye1b5QqdXOH'] // Replace with your actual file ID
+            'file_ids' => ['file-n6IYAnxDhAFhKFm12joX34Fm'] // Replace with your actual file ID
         ]);
 
         return $response->json();
@@ -77,7 +77,7 @@ class AiBotController extends Controller
         ])->post("https://api.openai.com/v1/threads/{$threadId}/messages", [
             'role' => 'user',
             'content' =>  $request->question,
-            'file_ids' => ['file-vNe6mgHPbEaSrye1b5QqdXOH']
+            'file_ids' => ['file-n6IYAnxDhAFhKFm12joX34Fm']
 
         ]);
 
@@ -160,7 +160,7 @@ class AiBotController extends Controller
     //             [
     //                 'role' => 'user',
     //                 'content' => $request->question . ' note :' . 'Please recommend a drink based solely on the contents of the uploaded file. If an exact match for the request is not found in the file, suggest the closest available option. return just the id', // Replace with your query, // Replace with your query
-    //                 'file_ids' => ['file-vNe6mgHPbEaSrye1b5QqdXOH'] // Replace with your actual file ID
+    //                 'file_ids' => ['file-n6IYAnxDhAFhKFm12joX34Fm'] // Replace with your actual file ID
     //             ]
     //         ]
     //     ]);
@@ -205,7 +205,7 @@ class AiBotController extends Controller
     //             [
     //                 'role' => 'user',
     //                 'content' =>  $question . ' note :' . 'Please recommend a drink based solely on the contents of the uploaded file. If an exact match for the request is not found in the file, suggest the closest available option. return just the id', // Replace with your query
-    //                 'file_ids' => ['file-vNe6mgHPbEaSrye1b5QqdXOH']
+    //                 'file_ids' => ['file-n6IYAnxDhAFhKFm12joX34Fm']
     //             ]
     //         ]
     //     ]);

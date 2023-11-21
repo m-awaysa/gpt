@@ -1,10 +1,17 @@
 @extends('layouts.app')
 @section('content')
+    <button onclick="refreshPage()" class="btn btn-primary my-3">Refresh Page</button>
+
     <div id='qrcode'>{!! $qrCode !!}</div>
     <div>{{ $uniqueId }}</div>
 
     <div id="chatContainer" class="d-flex flex-column justify-content-center align-content-center ">Chat</div>
     <div id="resultsContainer"></div>
+    <script>
+        function refreshPage() {
+            window.location.reload();
+        }
+    </script>
     <script type="module">
         function fetchData(uniqueId) {
 

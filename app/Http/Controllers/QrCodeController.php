@@ -83,7 +83,7 @@ class QrCodeController extends Controller
         $threadId  = QrCode::where('code',  $request->uniqueId)?->first()?->thread_id;
 
         $apiKey = env('OPENAI_API_KEY'); // Ensure your API key is stored in the .env file
-        $assistantId = 'asst_RWIP7tx2PT0BBBlIT0Wxrd8d'; // Replace with your actual assistant ID
+        $assistantId = 'asst_nPdqPpfJgiXVLLUMyfvzP2xR'; // Replace with your actual assistant ID
 
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $apiKey,
@@ -92,7 +92,7 @@ class QrCodeController extends Controller
         ])->post("https://api.openai.com/v1/threads/{$threadId}/messages", [
             'role' => 'user',
             'content' =>  $request->question,
-            'file_ids' => ['file-vNe6mgHPbEaSrye1b5QqdXOH']
+            'file_ids' => ['file-n6IYAnxDhAFhKFm12joX34Fm']
 
         ]);
 

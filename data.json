@@ -1,5 +1,6 @@
 [
     {
+        "name":"hot tea plus",
         "id": "drink1",
         "temperature": "hot",
         "type": "tea",
@@ -12,6 +13,7 @@
         ]
     },
     {
+        "name":"hot milk tea minus",
         "id": "drink2",
         "temperature": "hot",
         "type": "tea",
@@ -25,6 +27,7 @@
         ]
     },
     {
+        "name":"hot milk tea minus",
         "id": "drink3",
         "temperature": "iced",
         "type": "tea",
@@ -38,6 +41,7 @@
         ]
     },
     {
+        "name":"ice tea",
         "id": "drink4",
         "temperature": "iced",
         "type": "tea",
@@ -51,6 +55,7 @@
         ]
     },
     {
+        "name":"bad coffe",
         "id": "drink5",
         "temperature": "hot",
         "type": "coffe",
@@ -64,6 +69,7 @@
         ]
     },
     {
+        "name":"coffe",
         "id": "drink6",
         "temperature": "hot",
         "type": "coffe",
@@ -77,6 +83,7 @@
         ]
     },
     {
+        "name":"ice coffe",
         "id": "drink7",
         "temperature": "iced",
         "type": "coffe",
@@ -90,6 +97,7 @@
         ]
     },
     {
+        "name":"orangapple",
         "id": "drink8",
         "temperature": "cold",
         "type": "juice",
@@ -104,6 +112,7 @@
         ]
     },
     {
+        "name":"sugerless apple juice",
         "id": "drink9",
         "temperature": "cold",
         "type": "juice",
@@ -118,6 +127,7 @@
         ]
     },
     {
+        "name":"hot lovely orange juice",
         "id": "drink10",
         "temperature": "hot",
         "type": "juice",
@@ -131,6 +141,7 @@
         ]
     },
     {
+        "name":"hot orange juice",
         "id": "drink11",
         "temperature": "hot",
         "type": "juice",
