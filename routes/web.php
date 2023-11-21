@@ -113,7 +113,7 @@ Route::get('/stream/end/answer', [QrCodeController::class, 'answerFinished'])->n
 
 //     $threadId  = QrCode::where('code',  'bhWHs6XVSd')?->first()?->thread_id;
 
-//     $apiKey = env('OPENAI_API_KEY'); // Ensure your API key is stored in the .env file
+//     $apiKey = config('services.openai.api_key'); // Ensure your API key is stored in the .env file
 // ;
 
 //     $response = Http::withHeaders([

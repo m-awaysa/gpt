@@ -19,7 +19,7 @@ class AiBotProductController extends Controller
     public function uploadFile()
     {
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . env('OPENAI_API_KEY')
+            'Authorization' => 'Bearer ' . config('services.openai.api_key')
         ])->attach(
             'file',
             fopen(base_path('products.json'), 'r'),
@@ -55,7 +55,7 @@ class AiBotProductController extends Controller
     public function createAssistant()
     {
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
+            'Authorization' => 'Bearer ' . config('services.openai.api_key'),
             'Content-Type' => 'application/json',
             'OpenAI-Beta' => 'assistants=v1'
         ])->post('https://api.openai.com/v1/assistants', [
@@ -104,7 +104,7 @@ class AiBotProductController extends Controller
     public function createThread(Request $request)
     {
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
+            'Authorization' => 'Bearer ' . config('services.openai.api_key'),
             'Content-Type' => 'application/json',
             'OpenAI-Beta' => 'assistants=v1'
         ])->post('https://api.openai.com/v1/threads');
@@ -123,7 +123,7 @@ class AiBotProductController extends Controller
 
 
         $threadId = 'thread_PW5e7iznGYfx7oyqSDvPrjWL'; // Replace with your actual thread ID
-        $apiKey = env('OPENAI_API_KEY'); // Ensure your API key is stored in the .env file
+        $apiKey = config('services.openai.api_key'); // Ensure your API key is stored in the .env file
         $assistantId = 'asst_59CXP02KSrPlM4vuFmRSHM0t'; // Replace with your actual assistant ID
 
         $response = Http::withHeaders([
@@ -184,7 +184,7 @@ class AiBotProductController extends Controller
     public function getMessages(Request $request)
     {
         $threadId = 'thread_PW5e7iznGYfx7oyqSDvPrjWL'; // Replace with your actual thread ID
-        $apiKey = env('OPENAI_API_KEY'); // Ensure your API key is stored in the .env file
+        $apiKey = config('services.openai.api_key'); // Ensure your API key is stored in the .env file
 
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $apiKey,

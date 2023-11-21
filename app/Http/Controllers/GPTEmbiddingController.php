@@ -102,7 +102,7 @@ class GPTEmbiddingController extends Controller
     public function generateEmbeddingService(string $text)
     {
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
+            'Authorization' => 'Bearer ' . config('services.openai.api_key'),
             'Content-Type' => 'application/json',
         ])->post('https://api.openai.com/v1/embeddings', [
             'input' => $text,

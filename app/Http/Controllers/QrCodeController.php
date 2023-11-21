@@ -52,13 +52,13 @@ class QrCodeController extends Controller
         }
 
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
+            'Authorization' => 'Bearer ' . config('services.openai.api_key'),
             'Content-Type' => 'application/json',
             'OpenAI-Beta' => 'assistants=v1'
         ])->post('https://api.openai.com/v1/threads');
 
-        dd($response->json(),env('OPENAI_API_KEY'));
-        if ($response->json()['id']) {
+        dd($response->json(),config('services.openai.api_key'));
+        if (isset($responseArray['id'])) {
             $qrModel->thread_id = $response->json()['id'];
             $qrModel->save();
         }
@@ -83,7 +83,7 @@ class QrCodeController extends Controller
     {
         $threadId  = QrCode::where('code',  $request->uniqueId)?->first()?->thread_id;
 
-        $apiKey = env('OPENAI_API_KEY'); // Ensure your API key is stored in the .env file
+        $apiKey = config('services.openai.api_key'); // Ensure your API key is stored in the .env file
         $assistantId = 'asst_nPdqPpfJgiXVLLUMyfvzP2xR'; // Replace with your actual assistant ID
 
         $response = Http::withHeaders([
@@ -120,7 +120,7 @@ class QrCodeController extends Controller
         $uniqueId = $request->query('uniqueId');
         $threadId  = QrCode::where('code',   $uniqueId)?->first()?->thread_id;
 
-        $apiKey = env('OPENAI_API_KEY'); // Ensure your API key is stored in the .env file
+        $apiKey = config('services.openai.api_key'); // Ensure your API key is stored in the .env file
 
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $apiKey,

@@ -13,7 +13,7 @@ class TextToSpeechController extends Controller
     public function convertToSpeech(Request $request)
     {
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
+            'Authorization' => 'Bearer ' . config('services.openai.api_key'),
             'Content-Type' => 'application/json',
         ])->post('https://api.openai.com/v1/audio/speech', [
             'model' => 'tts-1',
@@ -51,7 +51,7 @@ class TextToSpeechController extends Controller
         $client = new Client();
         $response = $client->post('https://api.openai.com/v1/audio/transcriptions', [
             'headers' => [
-                'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
+                'Authorization' => 'Bearer ' . config('services.openai.api_key'),
             ],
             'multipart' => [
                 [
@@ -69,7 +69,7 @@ class TextToSpeechController extends Controller
         $body = $response->getBody();
         $transcription = json_decode($body);
 
-    
+
         // Return the transcription or handle as needed
 
         // Return the transcription or handle as needed

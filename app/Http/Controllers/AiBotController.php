@@ -11,7 +11,7 @@ class AiBotController extends Controller
     public function uploadFile()
     {
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . env('OPENAI_API_KEY')
+            'Authorization' => 'Bearer ' . config('services.openai.api_key')
         ])->attach(
             'file',
             fopen(base_path('data.json'), 'r'),
@@ -35,7 +35,7 @@ class AiBotController extends Controller
     public function createAssistant()
     {
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
+            'Authorization' => 'Bearer ' . config('services.openai.api_key'),
             'Content-Type' => 'application/json',
             'OpenAI-Beta' => 'assistants=v1'
         ])->post('https://api.openai.com/v1/assistants', [
@@ -53,7 +53,7 @@ class AiBotController extends Controller
     public function createThread(Request $request)
     {
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
+            'Authorization' => 'Bearer ' . config('services.openai.api_key'),
             'Content-Type' => 'application/json',
             'OpenAI-Beta' => 'assistants=v1'
         ])->post('https://api.openai.com/v1/threads');
@@ -67,7 +67,7 @@ class AiBotController extends Controller
 
 
         $threadId = 'thread_gw4lIIYGOq5v8YeLIriB6ILd'; // Replace with your actual thread ID
-        $apiKey = env('OPENAI_API_KEY'); // Ensure your API key is stored in the .env file
+        $apiKey = config('services.openai.api_key'); // Ensure your API key is stored in the .env file
         $assistantId = 'asst_Ow3NSIPDhFnhVBqg1OBYPKyU'; // Replace with your actual assistant ID
 
         $response = Http::withHeaders([
@@ -131,7 +131,7 @@ class AiBotController extends Controller
     {
 
         $threadId = 'thread_gw4lIIYGOq5v8YeLIriB6ILd'; // Replace with your actual thread ID
-        $apiKey = env('OPENAI_API_KEY'); // Ensure your API key is stored in the .env file
+        $apiKey = config('services.openai.api_key'); // Ensure your API key is stored in the .env file
 
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $apiKey,
@@ -152,7 +152,7 @@ class AiBotController extends Controller
     // {
 
     //     $response = Http::withHeaders([
-    //         'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
+    //         'Authorization' => 'Bearer ' . config('services.openai.api_key'),
     //         'Content-Type' => 'application/json',
     //         'OpenAI-Beta' => 'assistants=v1'
     //     ])->post('https://api.openai.com/v1/threads', [
@@ -176,7 +176,7 @@ class AiBotController extends Controller
     // {
     //     $thread_id = 'thread_fwrmOs4PY6TjUqFVFyBoLBGU';
     //     $response = Http::withHeaders([
-    //         'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
+    //         'Authorization' => 'Bearer ' . config('services.openai.api_key'),
     //         'Content-Type' => 'application/json',
     //         'OpenAI-Beta' => 'assistants=v1'
     //     ])->post("https://api.openai.com/v1/threads/{$thread_id}/runs", [
@@ -193,7 +193,7 @@ class AiBotController extends Controller
     //     $thread_id = 'thread_fwrmOs4PY6TjUqFVFyBoLBGU';
 
     //     $response = Http::withHeaders([
-    //         'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
+    //         'Authorization' => 'Bearer ' . config('services.openai.api_key'),
     //         'OpenAI-Beta' => 'assistants=v1'
     //     ])->get("https://api.openai.com/v1/threads/{$thread_id}/messages", [
     //         'messages' => [

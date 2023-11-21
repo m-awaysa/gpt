@@ -14,7 +14,7 @@ class GPTController extends Controller
         try {
             $response = Http::withHeaders([
                 'Content-Type' => 'application/json',
-                'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
+                'Authorization' => 'Bearer ' . config('services.openai.api_key'),
             ])->timeout(120)
                 ->post('https://api.openai.com/v1/chat/completions',  [
                     'model' => 'gpt-3.5-turbo', // Make sure to use the correct model name
@@ -50,7 +50,7 @@ class GPTController extends Controller
         $question = $request->input('question_for_context');
 
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
+            'Authorization' => 'Bearer ' . config('services.openai.api_key'),
             'Content-Type' => 'application/json',
         ])->timeout(120)->post('https://api.openai.com/v1/chat/completions', [
             'model' => 'gpt-3.5-turbo', // Use the appropriate model

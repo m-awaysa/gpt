@@ -11,7 +11,7 @@ class ImageQueryController extends Controller
     {
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
+            'Authorization' => 'Bearer ' . config('services.openai.api_key'),
         ])->post('https://api.openai.com/v1/chat/completions', [
             'model' => 'gpt-4-vision-preview',
             'messages' => [
