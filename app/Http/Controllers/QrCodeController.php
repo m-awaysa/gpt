@@ -83,7 +83,7 @@ class QrCodeController extends Controller
         $threadId  = QrCode::where('code',  $request->uniqueId)?->first()?->thread_id;
 
         $apiKey = env('OPENAI_API_KEY'); // Ensure your API key is stored in the .env file
-        $assistantId = 'asst_Ow3NSIPDhFnhVBqg1OBYPKyU'; // Replace with your actual assistant ID
+        $assistantId = 'asst_RWIP7tx2PT0BBBlIT0Wxrd8d'; // Replace with your actual assistant ID
 
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $apiKey,
@@ -115,8 +115,9 @@ class QrCodeController extends Controller
 
     public function getMessages(Request $request)
     {
-       // return  $request->uniqueId;
-        $threadId  = QrCode::where('code',  $request->uniqueId)?->first()?->thread_id;
+
+        $uniqueId = $request->query('uniqueId');
+        $threadId  = QrCode::where('code',   $uniqueId)?->first()?->thread_id;
 
         $apiKey = env('OPENAI_API_KEY'); // Ensure your API key is stored in the .env file
 
@@ -127,5 +128,15 @@ class QrCodeController extends Controller
         ])->get("https://api.openai.com/v1/threads/{$threadId}/messages");
 
         return $response->json();
+    }
+
+
+
+    public function answerFinished(Request $request)
+    {
+        $uniqueId = $request->query('uniqueId');
+        event(new MessageSent('closed', $uniqueId.'1'));
+
+        return ['success'];
     }
 }

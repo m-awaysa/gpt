@@ -7,26 +7,29 @@
     <div id="resultsContainer"></div>
     <script type="module">
         function fetchData(uniqueId) {
-            var bodyData = new FormData();
-            bodyData.append('uniqueId', uniqueId); // Replace 'key1' and 'value1' with your actual key and value
 
-            fetch("{{ route('stream.get.message') }}", {
+            var url = new URL("{{ route('stream.get.message') }}");
+            url.searchParams.append('uniqueId', uniqueId);
+
+            fetch(url, {
                     method: 'GET',
                     headers: {
                         'X-Requested-With': 'XMLHttpRequest', // Required for Laravel to recognize the request as AJAX
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
-                            'content'), // CSRF token
-                        body: bodyData
+                            'content') // CSRF token
+
                     }
                 })
-                .then(response =>  response.json()) 
+                .then(response => response.json())
                 .then(data => {
-                    console.log('js 24 fetchData:  ' + data);
+                    console.log('data :P')
+                    console.log(data);
 
                     const container = document.getElementById('resultsContainer');
                     container.innerHTML = ''; // Clear previous results
 
-                    data.forEach(res => {
+                    data.data.forEach(res => {
+
                         // Assuming each item in the array has a content array with at least one text object
                         let messageContent = res.content[0].text.value;
                         let messageDiv = document.createElement('div');
@@ -48,9 +51,9 @@
                 });
         }
 
-
         Echo.channel(`chat.{{ $uniqueId }}`)
             .listen('MessageSent', (e) => {
+
 
 
                 // Remove the QR code element
@@ -61,9 +64,9 @@
 
                 // Append the message to the chat container
                 const chatContainer = document.getElementById('chatContainer');
+                chatContainer.innerText = '';
                 const messageElement = document.createElement('p');
                 messageElement.className = 'text-center border p-3 border my-2 mb-5';
-                messageElement.innerText = '';
                 messageElement.innerText = 'your last message: ' + e
                     .message; // Adjust if your message structure is different
                 chatContainer.appendChild(messageElement);
@@ -83,24 +86,44 @@
                         },
                         body: data
                     })
-                    .then(response => response.json())
+                    .then(response => response)
                     .then(data => {
-                        console.log('js88 :' + data);
+
+                        console.log('Success:');
+                        console.log(data);
                         fetchData(e.uniqueId)
-                        let intervalId = setInterval(fetchData(e.uniqueId), 2000);
-                        console.log('js91 intervalId :' + intervalId);
+                        var intervalId = setInterval(() => fetchData(e.uniqueId), 4000);
                         setTimeout(() => {
                             clearInterval(intervalId);
-                            console.log("Stopped fetching data after 10 seconds.");
-                        }, 10000);
+                            console.log("Stopped fetching data after 30 seconds.");
+
+                            var url = new URL("{{ route('stream.end.answer') }}");
+                            url.searchParams.append('uniqueId', e.uniqueId);
+                            fetch(url, {
+                                    method: 'GET',
+                                    headers: {
+                                        'X-Requested-With': 'XMLHttpRequest', // Required for Laravel to recognize the request as AJAX
+                                        'X-CSRF-TOKEN': document.querySelector(
+                                            'meta[name="csrf-token"]').getAttribute(
+                                            'content') // CSRF token
+
+                                    }
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    console.log('success :P')
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                });
+
+                        }, 30000);
                         // Handle success
                     })
                     .catch((error) => {
                         console.error('Error:', error);
                         // Handle errors
                     });
-
-
 
 
 

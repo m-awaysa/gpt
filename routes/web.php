@@ -106,6 +106,7 @@ Route::get('/QrCode', [QrCodeController::class, 'index'])->name('qrcode');
 Route::get('/chat-with-assistant/{qrcode}', [QrCodeController::class, 'chatWithAssistant'])->name('chat-with-assistant');
 Route::post('/stream/create/message', [QrCodeController::class, 'createMessage'])->name('stream.create.message');
 Route::get('/stream/messages', [QrCodeController::class, 'getMessages'])->name('stream.get.message');
+Route::get('/stream/end/answer', [QrCodeController::class, 'answerFinished'])->name('stream.end.answer');
 
 // Route::get('/run-id', function () {
 

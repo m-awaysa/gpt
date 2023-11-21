@@ -3,12 +3,24 @@
     <div class="d-flex justify-content-center mt-5">
         <form id='form' onsubmit="sendMessage(event)">
             <input type="text" name="message">
-            <button type="submit">Send</button>
+            <button id="submitButton" type="submit">Send</button>
         </form>
     </div>
 
+    <script type="module">
+        Echo.channel(`chat.{{ $uniqueId }}` + '1')
+            .listen('MessageSent', (e) => {
+                const submitButton = document.getElementById('submitButton');
+                submitButton.disabled = false;
+            }).error((error) => {
+                console.error('Could not subscribe to the channel:', error);
+            });
+    </script>
+
     <script>
         function sendMessage(e) {
+            const submitButton = document.getElementById('submitButton');
+            submitButton.disabled = true;
             e.preventDefault(); // Prevent the default form submission
             const form = document.getElementById('form');
             const formData = new FormData(form);
