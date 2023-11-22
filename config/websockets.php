@@ -127,7 +127,7 @@ return [
 
         'local_cert' => '/home/socialprogmix/ssl/certs/social_progmix_dev_a3c6e_61323_1705294535_8586cac62bd27a9f1b6b9e8d77593cf9.crt',
         'local_pk' => '/home/socialprogmix/ssl/keys/e9b4b_af6f9_3ba3c9d2bada8f5c34b0a33441fd9771.key',
-        'verify' =>true,
+       
         /*
          * Passphrase for your local_cert file.
          */
