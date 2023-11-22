@@ -64,7 +64,7 @@ return [
                 'port' => 6001,
                 'scheme' => 'https',
                 'curl_options' => [
-                    'verify' =>true,
+                    'verify' =>false,
                 ],
             ],
         ],
