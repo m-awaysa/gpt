@@ -41,11 +41,11 @@ window.Pusher = Pusher;
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: "f4ewsaw3r43waet53tyger",
+    key: "63bb73ed80c7007c7360",
     cluster: "ap2",
     wsHost: window.location.hostname,
     wsPort: 6001,
-    wssPort: 6001,
+    wssPort: 443,
     enableStats: true,
     forceTLS: true,
     enabledTransports: ['ws', 'wss'],

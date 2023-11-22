@@ -63,7 +63,7 @@ return [
                 'useTLS' => true,
                 'encrypted' => true,
                 'host' => 'social.progmix.dev',
-                'port' => 6001,
+                'port' => 443,
                 'scheme' => 'https',
                 'curl_options' => [
                     CURLOPT_SSL_VERIFYHOST => 0,
