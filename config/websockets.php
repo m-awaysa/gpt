@@ -116,13 +116,17 @@ return [
          * certificate chain of issuers. The private key also may be contained
          * in a separate file specified by local_pk.
          */
-        'local_cert' => env('LARAVEL_WEBSOCKETS_SSL_LOCAL_CERT', null),
+        // 'local_cert' => env('LARAVEL_WEBSOCKETS_SSL_LOCAL_CERT', null),
 
-        /*
-         * Path to local private key file on filesystem in case of separate files for
-         * certificate (local_cert) and private key.
-         */
-        'local_pk' => env('LARAVEL_WEBSOCKETS_SSL_LOCAL_PK', null),
+        // /*
+        //  * Path to local private key file on filesystem in case of separate files for
+        //  * certificate (local_cert) and private key.
+        //  */
+        // 'local_pk' => env('LARAVEL_WEBSOCKETS_SSL_LOCAL_PK', null),
+
+
+        'local_cert' => '/home/socialprogmix/ssl/certs/ssl_sertificate_dsfgreg5e4g54Eger43543543543543.crt',
+        'local_pk' => '/home/socialprogmix/ssl/keys/key24y3y_32432rfedgfdeg-sslkey.key',
 
         /*
          * Passphrase for your local_cert file.
