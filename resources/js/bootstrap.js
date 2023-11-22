@@ -45,7 +45,7 @@ window.Echo = new Echo({
     cluster: "ap2",
     wsHost: window.location.hostname,
     wsPort: 6001,
-    wssPort: 443,
+    wssPort: 6001,
     enableStats: true,
     forceTLS: true,
     enabledTransports: ['ws', 'wss'],
