@@ -57,7 +57,7 @@ return [
             'secret' => env('PUSHER_APP_SECRET'),
             'app_id' => env('PUSHER_APP_ID'),
             'options' => [
-                'cluster' => 'mt1',
+                'cluster' => 'ap2',
                 'useTLS' => true,
                 'encrypted' => true,
                 'host' =>'social.progmix.dev',

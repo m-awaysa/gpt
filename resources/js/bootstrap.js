@@ -36,6 +36,18 @@ window.Pusher = Pusher;
 //     }
 // });
 
+
+Pusher.logToConsole = true;
+
+var pusher = new Pusher('63bb73ed80c7007c7360', {
+    cluster: 'ap2'
+});
+
+var channel = pusher.subscribe('my-channel');
+channel.bind('my-event', function (data) {
+    alert(JSON.stringify(data));
+});
+
 window.Echo = new Echo({
     broadcaster: 'pusher',
     key: "{{env(config('broadcasting.pusher.options.cluster'))}}",
