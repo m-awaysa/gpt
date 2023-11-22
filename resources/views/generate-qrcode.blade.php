@@ -64,7 +64,7 @@
             cluster: 'ap2'
         });
 
-        var channel = pusher.subscribe(`chat.{{ $uniqueId }}`);
+        var channel = pusher.subscribe(`chat.uJtAH3HwUp`);
         channel.bind('MessageSent', function(data) {
             alert(JSON.stringify(data));
         });
