@@ -50,7 +50,9 @@ return [
         //         CURLOPT_SSL_VERIFYPEER => 0,
         //     ],
         // ],
-
+        'pusher-custom' => [
+            'driver' => 'pusher-custom'
+        ],
         'pusher' => [
             'driver' => 'pusher',
             'key' => env('PUSHER_APP_KEY'),
@@ -60,11 +62,11 @@ return [
                 'cluster' => 'ap2',
                 'useTLS' => true,
                 'encrypted' => true,
-                'host' =>'social.progmix.dev',
+                'host' => 'social.progmix.dev',
                 'port' => 6001,
                 'scheme' => 'https',
                 'curl_options' => [
-                    'verify' =>false,
+                    'verify' => false,
                 ],
             ],
         ],
