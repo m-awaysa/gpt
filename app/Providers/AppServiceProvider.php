@@ -21,27 +21,15 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(BroadcastManager $broadcastManager): void
+    public function boot(): void
     {
-        //Create custom pusher, because they don't allow us to modify Guzzle client via config broadcasting.php, make sure you set pusher-custom in .env
-        $broadcastManager->extend('pusher-custom', function (Application $app, array $config) {
-            $client = new \GuzzleHttp\Client(['verify' => false]);
-
-            $options = [
-                'cluster' => env('PUSHER_APP_CLUSTER'),
-                'encrypted' => true,
-                'host' => 'social.progmix.dev',
-                'port' => env('PUSHER_PORT', 6001),
-                'useTLS' => env('PUSHER_SCHEME') == 'https',
-                'scheme' => env('PUSHER_SCHEME', 'https'),
-            ];
-
+        app(BroadcastManager::class)->extend('pusher-custom', function () {
             $pusher = new Pusher(
-                env('PUSHER_APP_KEY'),
-                env('PUSHER_APP_SECRET'),
-                env('PUSHER_APP_ID'),
-                $options,
-                $client //set custom guzzle client
+                config('broadcasting.connections.pusher.key'),
+                config('broadcasting.connections.pusher.secret'),
+                config('broadcasting.connections.pusher.app_id'),
+                config('broadcasting.connections.pusher.options'),
+                new \GuzzleHttp\Client(['verify' => false]),
             );
 
             return new PusherBroadcaster($pusher);

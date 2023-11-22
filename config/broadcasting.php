@@ -66,8 +66,11 @@ return [
                 'port' => 6001,
                 'scheme' => 'https',
                 'curl_options' => [
-                    'verify' => false,
-                ],
+                    CURLOPT_SSL_VERIFYHOST => 0,
+                    CURLOPT_SSL_VERIFYPEER => 0,                ],
+            ], 'client_options' => [
+                // Guzzle client options: https://docs.guzzlephp.org/en/stable/request-options.html
+                'verify' => false,
             ],
         ],
 
