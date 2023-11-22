@@ -38,8 +38,8 @@ window.Pusher = Pusher;
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: '{{env("PUSHER_APP_KEY")}}',
-    cluster: '{{env("PUSHER_APP_CLUSTER")}}',
+    key: "{{env(config('broadcasting.pusher.options.cluster'))}}",
+    cluster: "{{config('broadcasting.pusher.key')}}",
     wsHost: window.location.hostname,
     wsPort: 6001,
     wssPort: 6001,
