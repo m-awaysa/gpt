@@ -41,8 +41,8 @@ window.Pusher = Pusher;
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: "{{env(config('broadcasting.pusher.key')}}",
-    cluster: "{{config('broadcasting.pusher.options.')}}",
+    key: "f4ewsaw3r43waet53tyger",
+    cluster: "ap2",
     wsHost: window.location.hostname,
     wsPort: 6001,
     wssPort: 6001,
