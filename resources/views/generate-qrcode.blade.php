@@ -58,6 +58,17 @@
                 });
         }
 
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('63bb73ed80c7007c7360', {
+            cluster: 'ap2'
+        });
+
+        var channel = pusher.subscribe(`chat.{{ $uniqueId }}`);
+        channel.bind('MessageSent', function(data) {
+            alert(JSON.stringify(data));
+        });
+
         Echo.channel(`chat.{{ $uniqueId }}`)
             .listen('MessageSent', (e) => {
 
