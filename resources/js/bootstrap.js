@@ -45,7 +45,7 @@ window.Echo = new Echo({
     cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER ?? 'mt1',
     wsHost: window.location.hostname,
     wsPort: 8443,
-    wssPort: import.meta.env.VITE_PUSHER_PORT ?? 8443,
+    wssPort:8443,
     enableStats: true,
     forceTLS: true,
     enabledTransports: ['ws', 'wss'],
