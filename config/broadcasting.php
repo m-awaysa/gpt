@@ -61,7 +61,7 @@ return [
                 'host' => env('PUSHER_HOST') ?: 'api-'.env('PUSHER_APP_CLUSTER', 'mt1').'.pusher.com',
                 'useTLS' => true,
                 'encrypted' => true,
-                'port' => 443,
+                'port' => 8443,
                 'scheme' => 'https',
                 'curl_options' => [
                     CURLOPT_SSL_VERIFYHOST => 0,
