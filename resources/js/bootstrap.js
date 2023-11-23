@@ -41,9 +41,9 @@ window.Pusher = Pusher;
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key:import.meta.env.VITE_PUSHER_APP_KEY,
-    cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER ?? 'mt1',
-    wsHost: window.location.hostname,
+    key:'63bb73ed80c7007c7360',
+    cluster: 'mt1',
+    wsHost: 'gpt.progmix.io',
     wsPort: 8443,
     wssPort:8443,
     enableStats: true,
