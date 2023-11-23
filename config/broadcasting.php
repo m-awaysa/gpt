@@ -57,10 +57,10 @@ return [
             'secret' => env('PUSHER_APP_SECRET'),
             'app_id' => env('PUSHER_APP_ID'),
             'options' => [
-                'cluster' => 'mt1',
+                'cluster' => env('PUSHER_APP_CLUSTER'),
+                'host' => env('PUSHER_HOST') ?: 'api-'.env('PUSHER_APP_CLUSTER', 'mt1').'.pusher.com',
                 'useTLS' => true,
                 'encrypted' => true,
-                'host' =>  env('PUSHER_HOST'),
                 'port' => 6001,
                 'scheme' => 'https',
                 'curl_options' => [
