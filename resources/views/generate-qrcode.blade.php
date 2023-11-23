@@ -58,12 +58,12 @@
                 });
         }
 
-     
+
 
         Echo.channel(`chat.{{ $uniqueId }}`)
             .listen('MessageSent', (e) => {
 
-
+                console.log(e);
 
                 // Remove the QR code element
                 const qrCodeDiv = document.getElementById('qrcode');
