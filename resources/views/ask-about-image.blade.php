@@ -16,5 +16,5 @@
     <p>OpenAI Response:</p>
     <p>{{ $response['choices'][0]['message']['content'] ?? 'No response found.' }}</p>
 </div>
-
+@endif
 @endsection
