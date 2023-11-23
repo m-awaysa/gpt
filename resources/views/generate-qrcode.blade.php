@@ -59,9 +59,9 @@
         }
 
 
-
+        console.log('e');
         Echo.channel(`chat.{{ $uniqueId }}`)
-            .listen('MessageSent', (e) => {
+            .listen('.MessageSent', (e) => {
 
                 console.log(e);
 
