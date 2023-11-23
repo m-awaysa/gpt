@@ -51,19 +51,16 @@ return [
         //     ],
         // ],
 
-        'pusher-custom' => [
-            'driver' => 'pusher-custom'
-        ],
         'pusher' => [
             'driver' => 'pusher',
             'key' => env('PUSHER_APP_KEY'),
             'secret' => env('PUSHER_APP_SECRET'),
             'app_id' => env('PUSHER_APP_ID'),
             'options' => [
-                'cluster' => 'ap2',
+                'cluster' => 'mt1',
                 'useTLS' => true,
                 'encrypted' => true,
-                'host' => 'social.progmix.dev',
+                'host' =>  env('PUSHER_HOST'),
                 'port' => 6001,
                 'scheme' => 'https',
                 'curl_options' => [
