@@ -68,7 +68,12 @@
 
     @yield('content')
 
-
+    <script type="text/javascript" src="node_modules/accessibility/dist/main.bundle.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            new Accessibility();
+        }, false);
+    </script>
 </body>
 
 </html>

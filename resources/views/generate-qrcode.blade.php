@@ -6,6 +6,7 @@
     <div>{{ $uniqueId }}</div>
 
     <div id="chatContainer" class="d-flex flex-column justify-content-center align-content-center ">Chat</div>
+    <button id="get_full_res">i didnt get the full response?</button>
     <div id="resultsContainer"></div>
     <script>
         function refreshPage() {
@@ -13,6 +14,7 @@
         }
     </script>
     <script type="module">
+        
         function fetchData(uniqueId) {
 
             var url = new URL("{{ route('stream.get.message') }}");
