@@ -51,6 +51,7 @@ class WhatsappController extends Controller
         $challenge = $request->query('hub.challenge');
 
         Log::info('mode: '.$mode);
+        Log::info('token: '.$token);
         Log::info('request: '.$request);
         // Check if mode and token were sent
         if ($mode && $token) {
