@@ -72,8 +72,8 @@ class WhatsappController extends Controller
             Log::info('2: ');
 
             // Access the message data
-            $messageData = $request->input('entry');//->changes;//[0]->value->messages;
-            Log::info('3: ' . $messageData);
+            $messageData = $request->input('entry')->changes[0]->value->messages;
+
             // Loop through messages
 
         }
