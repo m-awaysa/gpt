@@ -65,8 +65,24 @@ class WhatsappController extends Controller
 
     public function receive(Request $request)
     {
-        Log::info('1:'.$request);
-        Log::info('222222:'.$request->entry[0]->changes[0]->value->message[0]->from);
+        Log::info('1: ' . $request);
 
+        // Check if entry and changes exist before trying to access them
+        if (isset($request->entry[0]->changes[0])) {
+            // Access the message data
+            $messageData = $request->entry[0]->changes[0]->value->messages;
+
+            // Loop through messages
+            foreach ($messageData as $message) {
+                $from = $message->from;
+                $timestamp = $message->timestamp;
+                $body = $message->text->body;
+
+                // Your processing logic here...
+                Log::info('From: ' . $from);
+                Log::info('Timestamp: ' . $timestamp);
+                Log::info('Body: ' . $body);
+            }
+        }
     }
 }
