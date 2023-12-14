@@ -138,14 +138,8 @@ Route::get('/logout', [loginController::class, 'logout'])->name('logout');
 
 
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
 Route::get('/whatsapp', [WhatsappController::class, 'index'])->name('whatsapp');
 
 
 Route::get('/webhooks', [WhatsappController::class, 'handleWebhook']);
-Route::post('/webhooks', [WhatsappController::class, 'receive']);
+// Route::post('/webhooks', [WhatsappController::class, 'receive']);

@@ -32,23 +32,11 @@ class WhatsappController extends Controller
         dd($response->json());
     }
 
-
-    // public function handleWebhook(Request $request)
-    // {
-    //     $mode = $request->query('hub.mode');
-    //     $challenge = $request->query('hub.challenge');
-    //     $verifyToken = $request->query('hub.verify_token');
-
-    //     // Add your verification logic here
-
-    //     return response()->json(['challenge' => $challenge], 200);
-    // }
-
     public function handleWebhook(Request $request)
     {
         $mode = $request->input('hub.mode');
-        $token = $request->query('hub.verify_token');
-        $challenge = $request->query('hub.challenge');
+        $token = $request->input('hub.verify_token');
+        $challenge = $request->input('hub.challenge');
 
         Log::info('mode: '.$mode);
         Log::info('token: '.$token);
