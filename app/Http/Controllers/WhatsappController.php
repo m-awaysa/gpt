@@ -38,10 +38,13 @@ class WhatsappController extends Controller
         $token = $request->input('hub.verify_token');
         $challenge = $request->query('hub.challenge');
 
-        Log::info('mode: ' . urldecode($mode));
-        Log::info('token: ' . $token);
-        Log::info('challenge: ' . $challenge);
-        Log::info('request: ' . $request);
+        foreach ($request->query() as $key => $value) {
+            Log::info("$key  -: $value");
+        }
+        // Log::info('mode: ' . urldecode($mode));
+        // Log::info('token: ' . $token);
+        // Log::info('challenge: ' . $challenge);
+        // Log::info('request: ' . $request);
         return response()->json(['challenge' => $challenge], 200);
         // Check if mode and token were sent
 
