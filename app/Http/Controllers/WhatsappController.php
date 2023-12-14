@@ -34,23 +34,6 @@ class WhatsappController extends Controller
         dd($response->json());
     }
 
-    // public function handleWebhook(Request $request)
-    // {
-    //     $mode = $request->query('hub_mode');
-    //     $token = $request->query('hub_verify_token');
-    //     $challenge = $request->query('hub_challenge');
-
-    //     Log::info('mode: ' . $mode);
-    //     Log::info('token: ' . $token);
-    //     Log::info('challenge: ' . $challenge);
-    //     Log::info('request: ' . $request);
-
-    //     return response()->json(['challenge' => $challenge], 200);
-
-    //     // Check if mode and token were sent
-
-    // }
-
 
     public function handleWebhook(Request $request)
     {
@@ -82,6 +65,8 @@ class WhatsappController extends Controller
 
     public function receive(Request $request)
     {
-        Log::info('MISSING_PARAMETER'.$request);
+        Log::info('$request->all()',$request->all());
+        Log::info('2:'.$request->entry[0]);
+        Log::info('3:'.$request->entry[0]->changes);
     }
 }
