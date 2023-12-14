@@ -10,7 +10,7 @@ class WhatsappController extends Controller
 {
 
 
-    public function index()
+    public function index($number)
     {
 
         $accessToken = env('ACCESS_TOKEN');
@@ -21,7 +21,7 @@ class WhatsappController extends Controller
             'Content-Type' => 'application/json',
         ])->post("https://graph.facebook.com/v17.0/192934250567181/messages", [
             'messaging_product' => 'whatsapp',
-            'to' => '972569207768', // Add your 'to' value here
+            'to' => $number, // Add your 'to' value here
             'type' => 'template',
             'template' => [
                 'name' => 'hello_world',
@@ -73,10 +73,8 @@ class WhatsappController extends Controller
 
             // Access the message data
             $messageData = $request->input('entry')[0]['changes'][0]['value']['messages'][0]['from'];
-            Log::info('3: '. $messageData);
-
-            // Loop through messages
-
+            Log::info('3: ' . $messageData);
+            $this->index($messageData);
         }
     }
 }
