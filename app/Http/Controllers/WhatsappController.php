@@ -9,13 +9,7 @@ use Illuminate\Support\Facades\Log;
 class WhatsappController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware(
-            'auth:admin',
-            ['except' => ['webhook', 'webhookpost']]
-        );
-    }
+
     public function index()
     {
 
@@ -72,7 +66,7 @@ class WhatsappController extends Controller
                 Log::info('mode:' . $mode);
                 Log::info('token:' . $token);
                 Log::info('challenge:' . $challenge);
-                return response()->json(['hub.challenge' => $challenge], 200);
+                return response()->json( $request->query('hub_challenge'), 200);
             } else {
                 // Respond with '403 Forbidden' if verify tokens do not match
                 Log::info('VERIFICATION_FAILED');
