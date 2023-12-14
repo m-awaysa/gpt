@@ -66,7 +66,6 @@ class WhatsappController extends Controller
     public function receive(Request $request)
     {
         Log::info('1:'.$request);
-        Log::info('2:'.$request->entry[0]);
         Log::info('222222:'.$request->entry[0]->changes[0]->value->message[0]->from);
 
     }
