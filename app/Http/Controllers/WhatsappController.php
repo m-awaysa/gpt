@@ -59,7 +59,7 @@ class WhatsappController extends Controller
         // Check if mode and token were sent
         if ($mode && $token) {
             // Check if mode and token sent are correct
-            if ($mode == 'subscribe' && $token == 213123) {
+            if ($mode == 'subscribe' && $token == '53g5rge5e4') {
                 // Respond with 200 OK and challenge token from the request
                 Log::info('mode:' . $mode);
                 Log::info('token:' . $token);
