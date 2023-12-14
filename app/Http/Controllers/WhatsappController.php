@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class WhatsappController extends Controller
 {
@@ -48,7 +49,8 @@ class WhatsappController extends Controller
         $mode = $request->query('hub.mode');
         $token = $request->query('hub.verify_token');
         $challenge = $request->query('hub.challenge');
-        echo $mode . $token . $challenge;
+
+        Log::info('VERIFICATION_FAILED: '.$mode);
         // Check if mode and token were sent
         if ($mode && $token) {
             // Check if mode and token sent are correct
@@ -56,7 +58,7 @@ class WhatsappController extends Controller
                 // Respond with 200 OK and challenge token from the request
                 return response()->json(['challenge' => $challenge], 200);
             } else {
-                // Respond with '403 Forbidden' if verify tokens do not match                Log::info('VERIFICATION_FAILED');
+                // Respond with '403 Forbidden' if verify tokens do not match
                 return response()->json(['status' => 'error', 'message' => 'Verification failed'], 403);
             }
         } else {
