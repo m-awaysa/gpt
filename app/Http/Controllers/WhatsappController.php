@@ -72,19 +72,10 @@ class WhatsappController extends Controller
             Log::info('2: ');
 
             // Access the message data
-            $messageData = $request->entry;//->changes;//[0]->value->messages;
-            Log::info('3: ' . $messageData);
+            $messageData = $request->input('entry');//->changes;//[0]->value->messages;
+          //  Log::info('3: ' . $messageData);
             // Loop through messages
-            foreach ($messageData as $message) {
-                $from = $message->from;
-                $timestamp = $message->timestamp;
-                $body = $message->text->body;
 
-                // Your processing logic here...
-                Log::info('From: ' . $from);
-                Log::info('Timestamp: ' . $timestamp);
-                Log::info('Body: ' . $body);
-            }
         }
     }
 }
