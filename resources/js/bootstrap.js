@@ -41,11 +41,11 @@ window.Pusher = Pusher;
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key:'63bb73ed80c7007c7360',
+    key: '63bb73ed80c7007c7360',
     cluster: 'mt1',
     wsHost: 'gpt.progmix.io',
     wsPort: 8443,
-    wssPort:8443,
+    wssPort: 8443,
     enableStats: true,
     forceTLS: true,
     enabledTransports: ['ws', 'wss'],

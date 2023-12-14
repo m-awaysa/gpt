@@ -15,6 +15,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     @vite(['resources/js/app.js'])
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ryersondmp/sa11y@3.0.3/dist/css/sa11y.min.css"/> --}}
 
     <!-- Styles -->
 
@@ -67,13 +68,14 @@
     </nav>
 
     @yield('content')
-
-    <script type="text/javascript" src="/node_modules/accessibility/dist/main.bundle.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/combine/gh/ryersondmp/sa11y@3.0.3/dist/js/lang/en.umd.js,gh/ryersondmp/sa11y@3.0.3/dist/js/sa11y.umd.min.js"></script>
     <script>
-        window.addEventListener('load', function() {
-            new Accessibility();
-        }, false);
-    </script>
+        Sa11y.Lang.addI18n(Sa11yLangEn.strings);
+        const sa11y = new Sa11y.Sa11y({
+          checkRoot: "body",
+          // Add props here!
+        });
+      </script> --}}
 </body>
 
 </html>

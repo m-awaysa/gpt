@@ -127,3 +127,24 @@ Route::get('/stream/end/answer', [QrCodeController::class, 'answerFinished'])->n
 Route::get('/login', [loginController::class, 'login'])->name('login');
 Route::get('/logout', [loginController::class, 'logout'])->name('logout');
 // Route::get('/stream', [loginController::class, 'stream'])->name('stream');
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
+Route::get('/whatsapp', [WhatsappController::class, 'index'])->name('whatsapp');
+
+
+Route::get('/webhooks', [WhatsappController::class, 'handleWebhook']);
+Route::post('/webhooks', [WhatsappController::class, 'receive']);
