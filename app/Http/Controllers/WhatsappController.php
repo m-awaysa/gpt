@@ -61,7 +61,9 @@ class WhatsappController extends Controller
             // Check if mode and token sent are correct
             if ($mode == 'subscribe' && $token == 213123) {
                 // Respond with 200 OK and challenge token from the request
-                Log::info('WEBHOOK_VERIFIED');
+                Log::info('mode:' . $mode);
+                Log::info('token:' . $token);
+                Log::info('challenge:' . $challenge);
                 return response()->json(['challenge' => $challenge], 200);
             } else {
                 // Respond with '403 Forbidden' if verify tokens do not match
