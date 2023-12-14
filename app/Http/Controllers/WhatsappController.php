@@ -34,36 +34,17 @@ class WhatsappController extends Controller
 
     public function handleWebhook(Request $request)
     {
-        $uri = $request->getRequestUri();
-        $urlComponents = parse_url($uri);
-        parse_str($urlComponents['query'], $queryParams);
+        $mode = $request->query('hub.mode');
+        $token = $request->input('hub.verify_token');
+        $challenge = $request->query('hub.challenge');
 
-        // Accessing individual parameters
-        $mode = $queryParams['hub.mode'] ?? null;
-        $token = $queryParams['hub.verify_token'] ?? null;
-        $challenge = $queryParams['hub.challenge'] ?? null;
-
-        // Logging the values
-        Log::info('mode: ' . $mode);
+        Log::info('mode: ' . urldecode($mode));
         Log::info('token: ' . $token);
         Log::info('challenge: ' . $challenge);
-
-
-
+        Log::info('request: ' . $request);
+        return response()->json(['challenge' => $challenge], 200);
         // Check if mode and token were sent
-        if ($mode && $token) {
-            // Check if mode and token sent are correct
-            if ($mode == 'subscribe' && $token == config('app.verify_token')) {
-                // Respond with 200 OK and challenge token from the request
-                return response()->json(['challenge' => $challenge], 200);
-            } else {
-                // Respond with '403 Forbidden' if verify tokens do not match
-                return response()->json(['status' => 'error', 'message' => 'Verification failed'], 403);
-            }
-        } else {
-            // Respond with '400 Bad Request' if verify tokens do not match            Log::info('MISSING_PARAMETER');
-            return response()->json(['status' => 'error', 'message' => 'Missing parameters'], 400);
-        }
+
     }
 
     public function receive(Request $request)
