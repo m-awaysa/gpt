@@ -31,7 +31,7 @@ class WhatsappController extends Controller
             ],
         ]);
         // Access the response as needed
-        dd($response->json());
+        return 'ok';
     }
 
 
