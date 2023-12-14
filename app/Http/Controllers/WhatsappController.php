@@ -40,8 +40,8 @@ class WhatsappController extends Controller
 
         // Add your verification logic here
 
-        return response($challenge, 200);
-    }
+        return response()->json(['challenge' => $challenge], 200);
+        }
 
 
 
