@@ -10,6 +10,7 @@ use App\Http\Controllers\loginController;
 use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\TextToSpeechController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WhatsappController;
 
 
 use App\Models\QrCode;
