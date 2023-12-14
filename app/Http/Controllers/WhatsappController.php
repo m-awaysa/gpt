@@ -16,19 +16,19 @@ class WhatsappController extends Controller
         $accessToken = env('ACCESS_TOKEN');
         $BsnsAccId = env('WhatsApp_Business_Account_ID');
         $phoneId = (int)env('Phone_number_ID');
+
         $response = Http::withHeaders([
             'Authorization' => 'Bearer EAAYnvtfy1CQBOzUhNt7ZCYxHZBZAwKrqyB57ZCRKrIxYxsc4UlBAIggZBi5L6MwGiiEvZBIBNZCtH4uyFSUB0APkJTzf2DxhJfk7dZBrDMrRed74Lim11Jl5A4Ii38i4XdJkporf8OZCSWJHngmIsikZCWrXSv6WrfyI6g568hgQrqrZCgt7TBz9cmEXJCP1hAoIQIIrkurShP76ZBCv7cQlhA389eQuYhoWvB6A6YIZD',
             'Content-Type' => 'application/json',
         ])->post("https://graph.facebook.com/v17.0/192934250567181/messages", [
             'messaging_product' => 'whatsapp',
             'to' => $number, // Add your 'to' value here
-            'type' => 'template',
-            'template' => [
-                'name' => 'hello_world',
-                'language' => [
-                    'code' => 'en_US',
-                ],
-            ],
+            "recipient_type" => "individual",
+            "type" => "text",
+            "text" => [
+                "preview_url" => false,
+                "body" => "احكي معي مشان الله"
+            ]
         ]);
         // Access the response as needed
         return 'ok';
