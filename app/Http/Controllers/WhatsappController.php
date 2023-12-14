@@ -64,7 +64,7 @@ class WhatsappController extends Controller
                 Log::info('mode:' . $mode);
                 Log::info('token:' . $token);
                 Log::info('challenge:' . $challenge);
-                return response()->json(['challenge' => $challenge], 200);
+                return response()->json(['hub_challenge' => $challenge], 200);
             } else {
                 // Respond with '403 Forbidden' if verify tokens do not match
                 Log::info('VERIFICATION_FAILED');
