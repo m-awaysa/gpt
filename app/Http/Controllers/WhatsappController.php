@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\Log;
 
 class WhatsappController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(
+            'auth:admin',
+            ['except' => ['webhook', 'webhookpost']]
+        );
+    }
     public function index()
     {
 

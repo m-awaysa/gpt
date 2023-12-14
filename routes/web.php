@@ -141,5 +141,5 @@ Route::get('/logout', [loginController::class, 'logout'])->name('logout');
 Route::get('/whatsapp', [WhatsappController::class, 'index'])->name('whatsapp');
 
 
-Route::get('/webhooks', [WhatsappController::class, 'handleWebhook']);
+Route::get('/webhook', [WhatsappController::class, 'handleWebhook']);
 // Route::post('/webhooks', [WhatsappController::class, 'receive']);
