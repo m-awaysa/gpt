@@ -57,7 +57,7 @@ class WhatsappController extends Controller
         $mode = $request->query('hub_mode');
         $token = $request->query('hub_verify_token');
         $challenge = $request->query('hub_challenge');
-        Log::info('token:' . $token);
+
         // Check if mode and token were sent
         if ($mode && $token) {
             // Check if mode and token sent are correct
@@ -82,6 +82,6 @@ class WhatsappController extends Controller
 
     public function receive(Request $request)
     {
-        dd($request->all());
+        Log::info('MISSING_PARAMETER'.$request);
     }
 }

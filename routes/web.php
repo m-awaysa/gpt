@@ -142,4 +142,4 @@ Route::get('/whatsapp', [WhatsappController::class, 'index'])->name('whatsapp');
 
 
 Route::get('/webhook', [WhatsappController::class, 'handleWebhook']);
-// Route::post('/webhooks', [WhatsappController::class, 'receive']);
+ Route::post('/webhook', [WhatsappController::class, 'receive']);
