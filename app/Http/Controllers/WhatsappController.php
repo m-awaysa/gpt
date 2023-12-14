@@ -34,14 +34,14 @@ class WhatsappController extends Controller
 
     public function handleWebhook(Request $request)
     {
-        $mode = $request->input('hub.mode');
+        $mode = $request->query('hub.mode');
         $token = $request->input('hub.verify_token');
-        $challenge = $request->input('hub.challenge');
+        $challenge = $request->query('hub.challenge');
 
-        Log::info('mode: '.$mode);
-        Log::info('token: '.$token);
-        Log::info('challenge: '.$challenge);
-        Log::info('request: '.$request);
+        Log::info('mode: ' . urldecode($mode));
+        Log::info('token: ' . $token);
+        Log::info('challenge: ' . $challenge);
+        Log::info('request: ' . $request);
         // Check if mode and token were sent
         if ($mode && $token) {
             // Check if mode and token sent are correct
