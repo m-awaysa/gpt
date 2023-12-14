@@ -69,9 +69,11 @@ class WhatsappController extends Controller
 
         // Check if entry and changes exist before trying to access them
         if (isset($request->entry[0]->changes[0])) {
+            Log::info('2: ');
+
             // Access the message data
             $messageData = $request->entry[0]->changes[0]->value->messages;
-
+            Log::info('3: ' . $messageData);
             // Loop through messages
             foreach ($messageData as $message) {
                 $from = $message->from;
