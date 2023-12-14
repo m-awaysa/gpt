@@ -40,6 +40,7 @@ class WhatsappController extends Controller
 
         Log::info('mode: '.$mode);
         Log::info('token: '.$token);
+        Log::info('challenge: '.$challenge);
         Log::info('request: '.$request);
         // Check if mode and token were sent
         if ($mode && $token) {
