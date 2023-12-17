@@ -19,7 +19,7 @@ class WhatsappController extends Controller
         $phoneId = (int)env('Phone_number_ID');
 
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer EAAYnvtfy1CQBOyFiSNzqmUd0u52NLudYyVRNFOwwT5WtIQaCOKyKzuIDhJ9tO5wVN38ZAj5VMKm0PTJOuZBBZCmPt9XCjEOZBVrTjOXs3PxsZBn6jUaKZCq5nF6FB3jiJaGUn59qsZCO9M6ErpmhtZCM61mZCAYRvtfMXF4b59eDZC9VqXB1ZBDbzK4D12Ck590BypBwxuOCHXST2r8ZBZBlT',
+            'Authorization' => 'Bearer EAAYnvtfy1CQBO0xPZB0VbhHNlTmvY5UNmoWh85js7NLITXFAoehvb1BhkZAqsMtIG7p7O2nFZA2DN5ErAivb2VCR2IRiZBWrtAb4ZC0qwJzr9IKPxTE90mgjclI8taAjrTCzJQCvp3rDHtU8ZAkxuGBwyz4TeUxLtmhTWEXuI9WSIGzKEFsrX5V5uIFtby3Y6irzwNE4sgZB97azkfLt0WflCV6KbW6FcQJeUQZD',
             'Content-Type' => 'application/json',
         ])->post("https://graph.facebook.com/v17.0/192934250567181/messages", [
             'messaging_product' => 'whatsapp',
@@ -31,6 +31,7 @@ class WhatsappController extends Controller
                 "body" => "احكي معي مشان الله"
             ]
         ]);
+
         Whatsapp::create([
             'request' => strval($request),
             'response_after_send' => strval($response->body()),
