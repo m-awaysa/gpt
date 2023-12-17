@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Whatsapp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -65,12 +66,13 @@ class WhatsappController extends Controller
 
     public function receive(Request $request)
     {
-        Log::info('1: ' . $request);
+
+        Whatsapp::create([
+            'request'=>$request
+        ]);
 
         // Check if entry and changes exist before trying to access them
         if (isset($request->entry[0])) {
-            Log::info('2: ');
-
             // Access the message data
             $messageData = $request->input('entry')[0]['changes'][0]['value']['messages'][0]['from'];
             Log::info('3: ' . $messageData);
