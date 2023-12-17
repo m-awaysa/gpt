@@ -81,5 +81,6 @@ class WhatsappController extends Controller
             Log::info('3: ' . $messageData);
             $this->index($messageData, $request);
         }
+        return response()->json(['message' => 'Webhook handled successfully'], 200);
     }
 }
