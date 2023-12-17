@@ -33,7 +33,7 @@ class WhatsappController extends Controller
         ]);
         Whatsapp::create([
             'request' => strval($request),
-            'response_after_send' => strval($response->json()),
+            'response_after_send' => strval($response->body()),
         ]);
         // Access the response as needed
         return 'ok';
