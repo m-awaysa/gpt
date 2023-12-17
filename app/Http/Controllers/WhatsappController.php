@@ -11,7 +11,7 @@ class WhatsappController extends Controller
 {
 
 
-    public function index($number)
+    public function index($number, $request)
     {
 
         $accessToken = env('ACCESS_TOKEN');
@@ -30,6 +30,10 @@ class WhatsappController extends Controller
                 "preview_url" => false,
                 "body" => "احكي معي مشان الله"
             ]
+        ]);
+        Whatsapp::create([
+            'request' => strval($request),
+            'response_after_send' => strval($response->json()),
         ]);
         // Access the response as needed
         return 'ok';
@@ -67,16 +71,14 @@ class WhatsappController extends Controller
     public function receive(Request $request)
     {
         Log::info('1: ' . $request);
-        Whatsapp::create([
-            'request'=> strval($request)
-        ]);
+
 
         // Check if entry and changes exist before trying to access them
         if (isset($request->entry[0])) {
             // Access the message data
             $messageData = $request->input('entry')[0]['changes'][0]['value']['messages'][0]['from'];
             Log::info('3: ' . $messageData);
-            $this->index($messageData);
+            $this->index($messageData, $request);
         }
     }
 }

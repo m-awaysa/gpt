@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('whatsapps', function (Blueprint $table) {
             $table->id();
             $table->longText('request');
+            $table->longText('response_after_send');
             $table->timestamps();
         });
     }
