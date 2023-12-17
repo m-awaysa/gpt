@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('whatsapps', function (Blueprint $table) {
             $table->id();
-            $table->json('request');
+            $table->longText('request');
             $table->timestamps();
         });
     }
