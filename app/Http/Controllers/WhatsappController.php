@@ -68,7 +68,7 @@ class WhatsappController extends Controller
     {
         Log::info('1: ' . $request);
         Whatsapp::create([
-            'request'=>$request
+            'request'=>$request->all()
         ]);
 
         // Check if entry and changes exist before trying to access them
