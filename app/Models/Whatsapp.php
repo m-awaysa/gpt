@@ -9,5 +9,5 @@ class Whatsapp extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['request'];
+    protected $fillable = ['request','response_after_send'];
 }
