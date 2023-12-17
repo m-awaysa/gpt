@@ -19,7 +19,7 @@ class WhatsappController extends Controller
         $phoneId = (int)env('Phone_number_ID');
 
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer EAAYnvtfy1CQBO4rJsmTDSSZA59kbjOniZBZB2YfI386dSFvCjloriYpHpf6BKOIVshgjygmXnnX5dy3npt3o6QQ1RVZBm0gZBZCNOqumP2ET06vWCi5wVlFRyXZA8ySiCRrYyZCYK3bCuZAGiuxLD0kTucw0eyvXTe6ZCc8jArIsAFZBQ1GhdwLNKV6a3mLC7O5w3CJRRo3zjtDwatkhn6d',
+            'Authorization' => 'Bearer EAAYnvtfy1CQBOZBhZBbMsQ2gTrd0Oq5L7PWhiTlsu233ZANmZAevLouo78ZAcT7gZAjkWzRo3WMQFtOsXzMh4X9mJVO7YKZBUMiCZACSJJF21V1ZAzbAqRAQZBSD3X8yzOpEtZCYDSeyWY4t4mijAxu4SjHDDbSGhRgZCQ833V1oenea19y5iGuFEOvoU3NVvguR7OLzSMC2qt6fh0FNsYb8vkjhj1FHWapchiRTNZA8ZD',
             'Content-Type' => 'application/json',
         ])->post("https://graph.facebook.com/v17.0/192934250567181/messages", [
             'messaging_product' => 'whatsapp',
