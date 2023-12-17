@@ -11,24 +11,26 @@ class WhatsappController extends Controller
 {
 
 
-    public function index($number, $request)
+    public function index($request, $number, $timestamp, $decodedMessage)
     {
 
         $accessToken = env('ACCESS_TOKEN');
         $BsnsAccId = env('WhatsApp_Business_Account_ID');
         $phoneId = (int)env('Phone_number_ID');
 
+        $formattedBody = date('Y-m-d H:i:s', $timestamp) . ' - ' . $decodedMessage;
+
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer '.env('WHATSAPPTOKEN'),
+            'Authorization' => 'Bearer ' . env('WHATSAPPTOKEN'),
             'Content-Type' => 'application/json',
         ])->post("https://graph.facebook.com/v17.0/192934250567181/messages", [
             'messaging_product' => 'whatsapp',
-            'to' => $number, // Add your 'to' value here
+            'to' => $number,
             "recipient_type" => "individual",
             "type" => "text",
             "text" => [
                 "preview_url" => false,
-                "body" => "احكي معي مشان الله"
+                "body" => $formattedBody,
             ]
         ]);
 
@@ -40,7 +42,6 @@ class WhatsappController extends Controller
         // Access the response as needed
         return 'ok';
     }
-
 
     public function handleWebhook(Request $request)
     {
@@ -69,19 +70,23 @@ class WhatsappController extends Controller
         }
     }
 
-
     public function receive(Request $request)
     {
         Log::info('1: ' . $request);
 
-
         // Check if entry and changes exist before trying to access them
         if (isset($request->entry[0])) {
             // Access the message data
-            $messageData = $request->input('entry')[0]['changes'][0]['value']['messages'][0]['from'];
-            Log::info('3: ' . $messageData);
-            $this->index($messageData, $request);
+            $changes = $request->input('entry')[0]['changes'][0]['value'];
+
+            // Extract timestamp and decoded Arabic message
+            $timestamp = $changes['messages'][0]['timestamp'];
+            $decodedMessage = json_decode('"' . $changes['messages'][0]['text']['body'] . '"');
+
+            // Call the index method with the extracted data
+            $this->index($request, $changes['contacts'][0]['wa_id'], $timestamp, $decodedMessage);
         }
+
         return response()->json(['message' => 'Webhook handled successfully'], 200);
     }
 }
